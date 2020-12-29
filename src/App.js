@@ -1,45 +1,44 @@
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
-
-let token = "Bearer ";
+import { clientID } from "./credentials";
+import { clientSecret } from "./credentials";
 
 function App() {
+  let [token, setToken] = useState();
   let [input, setInput] = useState("");
+  let [artist, setArtist] = useState("");
+  let [genres, setGenres] = useState("");
+  let [selectedGenre, setSelectedGenre] = useState();
   let [dance, setDance] = useState();
-  let [energy, setEnergy] = useState();
   let [instrument, setInstrument] = useState();
-  let [key, setKey] = useState();
   let [mode, setMode] = useState();
-  let [popularity, setPopularity] = useState();
   let [tempo, setTempo] = useState();
   let [valance, setValance] = useState();
-  let [artist, setArtist] = useState("");
   let [id, setId] = useState();
   // let [topTracks, setTopTracks] = useState([]);
   // let [img, setImg] = useState();
   let [personalized, setPersonalized] = useState([]);
 
+  function handleArtist(e) {
+    setInput(encodeURI(e.target.value));
+  }
+
+  function handleGenre(e) {
+    setSelectedGenre(e.target.value);
+  }
   function handleDance(e) {
     setDance(e.target.value);
   }
-  function handleEnergy(e) {
-    setEnergy(e.target.value);
-  }
+
   function handleInstrument(e) {
     setInstrument(e.target.value);
-  }
-  function handleKey(e) {
-    setKey(e.target.value);
   }
 
   function handleMode(e) {
     e.target.value === "major" ? setMode(1) : setMode(0);
   }
 
-  function handlePopularity(e) {
-    setPopularity(e.target.value);
-  }
   function handleTempo(e) {
     setTempo(e.target.value);
   }
@@ -47,33 +46,42 @@ function App() {
     setValance(e.target.value);
   }
 
-  function handleReset() {
-    setInput();
-    setArtist();
-    setDance();
-    setEnergy();
-    setInstrument();
-    setKey();
-    setMode();
-    setPopularity();
-    setTempo();
-    setValance();
-  }
-
-  function handleArtist(e) {
-    setInput(encodeURI(e.target.value));
+  function getToken(e) {
+    e.preventDefault();
+    axios({
+      url: "https://accounts.spotify.com/api/token",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Basic " + btoa(clientID + ":" + clientSecret),
+      },
+      data: "grant_type=client_credentials",
+    }).then((res) => {
+      let token = res.data.access_token;
+      setToken(token);
+      axios({
+        url: "https://api.spotify.com/v1/recommendations/available-genre-seeds",
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }).then((res) => setGenres(res.data.genres));
+    });
   }
 
   function handleSubmit(e) {
-    let request1 = "https://api.spotify.com/v1/search";
+    let request2 = "https://api.spotify.com/v1/search";
     e.preventDefault();
+
     axios({
-      url: `${request1}?q=${input}&type=artist`,
+      url: `${request2}?q=${input}&type=artist`,
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: token,
+        Authorization: "Bearer " + token,
       },
     }).then((res) => {
       console.log(res);
@@ -93,15 +101,15 @@ function App() {
   }
 
   function handleForm(e) {
-    let request2 = "https://api.spotify.com/v1/recommendations";
+    let request3 = "https://api.spotify.com/v1/recommendations";
     e.preventDefault();
     axios({
-      url: `${request2}?limit=10&market=US&seed_artists=${id}&target_instrumentalness=${instrument}&target_valance=${valance}`,
+      url: `${request3}?limit=10&market=US&seed_genres=${selectedGenre}&target_instrumentalness=${instrument}&target_valance=${valance}&target_danceability=${dance}&target_mode=${mode}&target_tempo=${tempo}`,
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: token,
+        Authorization: "Bearer " + token,
       },
     }).then((res) => setPersonalized(res.data.tracks));
   }
@@ -109,7 +117,10 @@ function App() {
   return (
     <div className="App">
       <form className="formInputs">
-        <div>
+        <div>First generate a token: </div>
+
+        <input value="get it" type="submit" onClick={getToken} />
+        {/* <div>
           <input
             type="text"
             onChange={handleArtist}
@@ -118,7 +129,21 @@ function App() {
           />
         </div>
 
-        <input type="button" value="send" onClick={handleSubmit} />
+        <input type="button" value="send" onClick={handleSubmit} /> */}
+
+        <div>Choose your favorite genre</div>
+        <div>
+          <select type="submit" value="choose" onChange={handleGenre}>
+            <option value="">choose your genre</option>
+            {genres
+              ? genres.map((elem, index) => (
+                  <option value={`${elem}`} key="index">
+                    {elem}
+                  </option>
+                ))
+              : null}
+          </select>
+        </div>
 
         <div>
           Danceability describes how suitable a track is for dancing based on a
@@ -137,25 +162,7 @@ function App() {
             onChange={handleDance}
           />
         </div>
-        <div>
-          Energy is a measure from 0.0 to 1.0 and represents a perceptual
-          measure of intensity and activity. Typically, energetic tracks feel
-          fast, loud, and noisy. For example, death metal has high energy, while
-          a Bach prelude scores low on the scale. Perceptual features
-          contributing to this attribute include dynamic range, perceived
-          loudness, timbre, onset rate, and general entropy.
-        </div>
-        <div>
-          <label htmlFor="energy">Energy - {energy}</label>
-          <input
-            type="range"
-            name="energy"
-            min="0.00"
-            max="1.00"
-            step="0.10"
-            onChange={handleEnergy}
-          />
-        </div>
+
         <div>
           Predicts whether a track contains no vocals. “Ooh” and “aah” sounds
           are treated as instrumental in this context. Rap or spoken word tracks
@@ -177,22 +184,6 @@ function App() {
             onChange={handleInstrument}
           />
         </div>
-        <div>
-          The key the track is in. Integers map to pitches using standard Pitch
-          Class notation. 0 C, 1 C♯, D♭ 2 D, 3 D♯, E♭, 4 E, 5 F, 6 F♯, 7 G, 8
-          G♯, A♭, 9 A,
-        </div>
-        <div>
-          <label htmlFor="key">Key - {key}</label>
-          <input
-            type="range"
-            name="key"
-            min="0"
-            max="9"
-            step="1"
-            onChange={handleKey}
-          />
-        </div>
 
         <div>
           Mode indicates the modality (major or minor) of a track, the type of
@@ -205,23 +196,7 @@ function App() {
           <input type="radio" name="mode" value="minor" onClick={handleMode} />
           <label htmlFor="major">minor</label>
         </div>
-        <div>
-          The popularity of the track. The value will be between 0 and 100, with
-          100 being the most popular. The popularity is calculated by algorithm
-          and is based, in the most part, on the total number of plays the track
-          has had and how recent those plays are.
-        </div>
-        <div>
-          <label htmlFor="popularity">Popularity - {popularity}</label>
-          <input
-            type="range"
-            name="popularity"
-            min="0"
-            max="100"
-            step="1"
-            onChange={handlePopularity}
-          />
-        </div>
+
         <div>
           The overall estimated tempo of a track in beats per minute (BPM). In
           musical terminology, tempo is the speed or pace of a given piece and
@@ -255,15 +230,14 @@ function App() {
             onChange={handleValance}
           />
         </div>
-        <input value="try" type="submit" onClick={handleForm} />
-        <input value="reset" type="button" onClick={handleReset} />
+        <div>Submit the data from the form</div>
+        <input value="submit" type="submit" onClick={handleForm} />
       </form>
       <div className="tracks">
         <h2>Suggested songs:</h2>
         <div className="queries">
-          Artist: {artist}, Danceability: {dance}, Energy: {energy},
-          Instrumentalness: {instrument}, Key: {key}, Mode: {mode}, Popularity:{" "}
-          {popularity}, Tempo: {tempo}BPM, Valance: {valance}
+          Genre: {selectedGenre}, Danceability: {dance}, Instrumentalness:{" "}
+          {instrument}, Mode: {mode}, Tempo: {tempo}BPM, Valance: {valance}
         </div>
 
         {personalized.map((track, index) => (
