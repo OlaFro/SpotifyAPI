@@ -15,6 +15,7 @@ function App() {
   let [mode, setMode] = useState();
   let [tempo, setTempo] = useState();
   let [valance, setValance] = useState();
+  let [popularity, setPopularity] = useState();
   let [id, setId] = useState();
   // let [topTracks, setTopTracks] = useState([]);
   // let [img, setImg] = useState();
@@ -44,6 +45,10 @@ function App() {
   }
   function handleValance(e) {
     setValance(e.target.value);
+  }
+
+  function handlePopularity(e) {
+    setPopularity(e.target.value);
   }
 
   function getToken(e) {
@@ -87,16 +92,6 @@ function App() {
       console.log(res);
       setId(res.data.artists.items[0].id);
       setArtist(res.data.artists.items[0].name);
-      // setImg(res.data.artists.items[0].images[2].url);
-      // axios({
-      //   url: `https://api.spotify.com/v1/artists/${res.data.artists.items[0].id}/top-tracks?market=US`,
-      //   method: "GET",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Accept: "application/json",
-      //     Authorization: token,
-      //   },
-      // }).then((res) => setTopTracks(res.data.tracks));
     });
   }
 
@@ -104,7 +99,7 @@ function App() {
     let request3 = "https://api.spotify.com/v1/recommendations";
     e.preventDefault();
     axios({
-      url: `${request3}?limit=10&market=US&seed_genres=${selectedGenre}&target_instrumentalness=${instrument}&target_valance=${valance}&target_danceability=${dance}&target_mode=${mode}&target_tempo=${tempo}`,
+      url: `${request3}?limit=10&market=US&seed_genres=${selectedGenre}&target_instrumentalness=${instrument}&target_valance=${valance}&target_danceability=${dance}&target_mode=${mode}&target_tempo=${tempo}&target_popularity=${popularity}`,
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -118,19 +113,7 @@ function App() {
     <div className="App">
       <form className="formInputs">
         <div>First generate a token: </div>
-
         <input value="get it" type="submit" onClick={getToken} />
-        {/* <div>
-          <input
-            type="text"
-            onChange={handleArtist}
-            name="artist"
-            placeholder="Artist name"
-          />
-        </div>
-
-        <input type="button" value="send" onClick={handleSubmit} /> */}
-
         <div>Choose your favorite genre</div>
         <div>
           <select type="submit" value="choose" onChange={handleGenre}>
@@ -144,7 +127,6 @@ function App() {
               : null}
           </select>
         </div>
-
         <div>
           Danceability describes how suitable a track is for dancing based on a
           combination of musical elements including tempo, rhythm stability,
@@ -162,7 +144,6 @@ function App() {
             onChange={handleDance}
           />
         </div>
-
         <div>
           Predicts whether a track contains no vocals. “Ooh” and “aah” sounds
           are treated as instrumental in this context. Rap or spoken word tracks
@@ -184,7 +165,6 @@ function App() {
             onChange={handleInstrument}
           />
         </div>
-
         <div>
           Mode indicates the modality (major or minor) of a track, the type of
           scale from which its melodic content is derived. Major is represented
@@ -196,7 +176,6 @@ function App() {
           <input type="radio" name="mode" value="minor" onClick={handleMode} />
           <label htmlFor="major">minor</label>
         </div>
-
         <div>
           The overall estimated tempo of a track in beats per minute (BPM). In
           musical terminology, tempo is the speed or pace of a given piece and
@@ -211,6 +190,23 @@ function App() {
             max="250"
             step="10"
             onChange={handleTempo}
+          />
+        </div>
+        <div>
+          The popularity of the track. The value will be between 0 and 100, with
+          100 being the most popular. The popularity is calculated by algorithm
+          and is based, in the most part, on the total number of plays the track
+          has had and how recent those plays are.
+        </div>
+        <div>
+          <label htmlFor="popularity">Popularity - {popularity}</label>
+          <input
+            type="range"
+            name="popularity"
+            min="0"
+            max="100"
+            step="1"
+            onChange={handlePopularity}
           />
         </div>
         <div>
@@ -237,7 +233,8 @@ function App() {
         <h2>Suggested songs:</h2>
         <div className="queries">
           Genre: {selectedGenre}, Danceability: {dance}, Instrumentalness:{" "}
-          {instrument}, Mode: {mode}, Tempo: {tempo}BPM, Valance: {valance}
+          {instrument}, Mode: {mode}, Tempo: {tempo}BPM, Popularity:{" "}
+          {popularity} Valance: {valance}
         </div>
 
         {personalized.map((track, index) => (
@@ -253,161 +250,8 @@ function App() {
           </div>
         ))}
       </div>
-      {/* <div>
-        {id ? (
-          <div>
-            <h1>Top 10 tracks from {artist} </h1>
-
-            <img src={img} alt={artist} height="160" width="160" />
-          </div>
-        ) : null}
-
-        {topTracks ? (
-          <div className="tracks">
-            {topTracks.map((elem, index) => (
-              <div key={index}>
-                {elem.name}{" "}
-                <audio controls>
-                  <source src={elem.preview_url} type="audio/ogg" />
-                </audio>
-              </div>
-            ))}
-          </div>
-        ) : null}
-      </div> */}
     </div>
   );
 }
 
 export default App;
-
-// {
-//   "genres": [
-//     "acoustic",
-//     "afrobeat",
-//     "alt-rock",
-//     "alternative",
-//     "ambient",
-//     "anime",
-//     "black-metal",
-//     "bluegrass",
-//     "blues",
-//     "bossanova",
-//     "brazil",
-//     "breakbeat",
-//     "british",
-//     "cantopop",
-//     "chicago-house",
-//     "children",
-//     "chill",
-//     "classical",
-//     "club",
-//     "comedy",
-//     "country",
-//     "dance",
-//     "dancehall",
-//     "death-metal",
-//     "deep-house",
-//     "detroit-techno",
-//     "disco",
-//     "disney",
-//     "drum-and-bass",
-//     "dub",
-//     "dubstep",
-//     "edm",
-//     "electro",
-//     "electronic",
-//     "emo",
-//     "folk",
-//     "forro",
-//     "french",
-//     "funk",
-//     "garage",
-//     "german",
-//     "gospel",
-//     "goth",
-//     "grindcore",
-//     "groove",
-//     "grunge",
-//     "guitar",
-//     "happy",
-//     "hard-rock",
-//     "hardcore",
-//     "hardstyle",
-//     "heavy-metal",
-//     "hip-hop",
-//     "holidays",
-//     "honky-tonk",
-//     "house",
-//     "idm",
-//     "indian",
-//     "indie",
-//     "indie-pop",
-//     "industrial",
-//     "iranian",
-//     "j-dance",
-//     "j-idol",
-//     "j-pop",
-//     "j-rock",
-//     "jazz",
-//     "k-pop",
-//     "kids",
-//     "latin",
-//     "latino",
-//     "malay",
-//     "mandopop",
-//     "metal",
-//     "metal-misc",
-//     "metalcore",
-//     "minimal-techno",
-//     "movies",
-//     "mpb",
-//     "new-age",
-//     "new-release",
-//     "opera",
-//     "pagode",
-//     "party",
-//     "philippines-opm",
-//     "piano",
-//     "pop",
-//     "pop-film",
-//     "post-dubstep",
-//     "power-pop",
-//     "progressive-house",
-//     "psych-rock",
-//     "punk",
-//     "punk-rock",
-//     "r-n-b",
-//     "rainy-day",
-//     "reggae",
-//     "reggaeton",
-//     "road-trip",
-//     "rock",
-//     "rock-n-roll",
-//     "rockabilly",
-//     "romance",
-//     "sad",
-//     "salsa",
-//     "samba",
-//     "sertanejo",
-//     "show-tunes",
-//     "singer-songwriter",
-//     "ska",
-//     "sleep",
-//     "songwriter",
-//     "soul",
-//     "soundtracks",
-//     "spanish",
-//     "study",
-//     "summer",
-//     "swedish",
-//     "synth-pop",
-//     "tango",
-//     "techno",
-//     "trance",
-//     "trip-hop",
-//     "turkish",
-//     "work-out",
-//     "world-music"
-//   ]
-// }
