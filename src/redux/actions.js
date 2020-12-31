@@ -60,3 +60,10 @@ export function getToken(token) {
     payload: token,
   };
 }
+
+export function currStep(step) {
+  return {
+    type: "CURR_STEP",
+    payload: step,
+  };
+}

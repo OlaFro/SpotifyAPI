@@ -5,6 +5,7 @@ import {
   setValance,
   getToken,
   getRecommendations,
+  currStep,
 } from "../redux/actions";
 import { clientID, clientSecret } from "../helpers/credentials";
 import axios from "axios";
@@ -31,6 +32,7 @@ export default function Form3() {
 
   function tokenRequest(e) {
     e.preventDefault();
+    dispatch(currStep("tracks"));
     let url1 = "https://accounts.spotify.com/api/token";
     let url2 = "https://api.spotify.com/v1/recommendations";
     axios({
@@ -45,7 +47,7 @@ export default function Form3() {
       let token = res.data.access_token;
       dispatch(getToken(token));
       axios({
-        url: `${url2}?limit=10&market=US&seed_genres=${genre}&target_instrumentalness=${instrument}&target_valance=${valance}&target_danceability=${dance}&target_mode=${mode}&target_tempo=${tempo}&target_popularity=${popularity}`,
+        url: `${url2}?limit=10&market=DE&seed_genres=${genre}&target_instrumentalness=${instrument}&target_valance=${valance}&target_danceability=${dance}&target_mode=${mode}&target_tempo=${tempo}&target_popularity=${popularity}`,
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +59,7 @@ export default function Form3() {
   }
 
   return (
-    <div style={{ border: "1px solid black" }}>
+    <div>
       <div>
         <label htmlFor="popularity">Popularity - {popularity}</label>
         <input

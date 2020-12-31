@@ -1,9 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { getRecommendations } from "../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+import { currStep } from "../redux/actions";
 
 export default function Player() {
   const recommendations = useSelector((state) => state.recommendations);
+  const dispatch = useDispatch();
+
+  function sendBack() {
+    dispatch(currStep("Form1"));
+  }
   return (
     <div>
       <h2>Suggested songs:</h2>
@@ -20,6 +25,7 @@ export default function Player() {
           </div>
         </div>
       ))}
+      <input type="button" value="again!" onClick={sendBack} />
     </div>
   );
 }

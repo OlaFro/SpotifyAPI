@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setGenre, setDance, setInstrument } from "../redux/actions";
+import { setGenre, setDance, setInstrument, currStep } from "../redux/actions";
 import { genres } from "../helpers/genres";
 
 export default function Form1() {
@@ -20,8 +20,15 @@ export default function Form1() {
     dispatch(setInstrument(e.target.value));
   }
 
+  function sendForm1(e) {
+    e.preventDefault();
+    if (genre && dance && instrument) {
+      dispatch(currStep("Form2"));
+    }
+  }
+
   return (
-    <div style={{ border: "1px solid black" }}>
+    <div>
       <div>Choose your favorite genre</div>
       <select type="submit" value={genre} onChange={handleGenre}>
         <option value="">choose your genre</option>
@@ -55,7 +62,7 @@ export default function Form1() {
           onChange={handleInstrument}
         />
       </div>
-      <input type="button" value="next" />
+      <input type="submit" value="next" onClick={sendForm1} />
     </div>
   );
 }

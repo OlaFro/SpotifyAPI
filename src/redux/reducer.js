@@ -1,4 +1,15 @@
-let initialState = {};
+let initialState = {
+  genre: "",
+  dance: "",
+  instrument: "",
+  mode: "",
+  tempo: "",
+  popularity: "",
+  valance: "",
+  recommendations: "",
+  token: "",
+  currStep: "Form1",
+};
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -46,6 +57,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         token: action.payload,
+      };
+    case "CURR_STEP":
+      return {
+        ...state,
+        currStep: action.payload,
       };
 
     default:

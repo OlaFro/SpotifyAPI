@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setMode, setTempo } from "../redux/actions";
+import { setMode, setTempo, currStep } from "../redux/actions";
 
 export default function Form2() {
   const mode = useSelector((state) => state.mode);
@@ -15,9 +15,18 @@ export default function Form2() {
   function handleTempo(e) {
     dispatch(setTempo(e.target.value));
   }
+  function sendForm2(e) {
+    e.preventDefault();
+    console.log("testing");
+    console.log(mode);
+    console.log(tempo);
+    if ((mode === 1 || mode === 0) && tempo) {
+      dispatch(currStep("Form3"));
+    }
+  }
 
   return (
-    <div style={{ border: "1px solid black" }}>
+    <div>
       <div>
         <input type="radio" name="mode" value="major" onClick={handleMode} />
         <label htmlFor="major">major</label>
@@ -36,7 +45,7 @@ export default function Form2() {
         />{" "}
         BPM
       </div>
-      <input type="button" value="next" />
+      <input type="button" value="next" onClick={sendForm2} />
     </div>
   );
 }
