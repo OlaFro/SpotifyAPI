@@ -9,12 +9,20 @@ import {
 } from "../redux/actions";
 import { clientID, clientSecret } from "../helpers/credentials";
 import axios from "axios";
+import {
+  StyledAsk,
+  StyledBlob,
+  StyledInputRange,
+  StyledButton,
+  StyledSelect,
+  StyledDescription,
+} from "../styled components/styledForm1";
 
 export default function Form3() {
   const popularity = useSelector((state) => state.popularity);
   const valance = useSelector((state) => state.dance);
-  const token = useSelector((state) => state.token);
-  const recommendations = useSelector((state) => state.recommendations);
+  // const token = useSelector((state) => state.token);
+  // const recommendations = useSelector((state) => state.recommendations);
   const genre = useSelector((state) => state.genre);
   const dance = useSelector((state) => state.dance);
   const instrument = useSelector((state) => state.instrument);
@@ -59,31 +67,54 @@ export default function Form3() {
   }
 
   return (
-    <div>
-      <div>
-        <label htmlFor="popularity">Popularity - {popularity}</label>
-        <input
-          type="range"
-          name="popularity"
-          min="0"
-          max="100"
-          step="1"
-          onChange={handlePopularity}
-        />
-      </div>
+    <StyledBlob step3>
+      <svg
+        viewBox="0 0 500 500"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        id="blobSvg"
+      >
+        <path
+          d="M428,288Q433,326,401.5,348Q370,370,340,382Q310,394,280,417.5Q250,441,221.5,415Q193,389,146.5,394.5Q100,400,106,353.5Q112,307,86,278.5Q60,250,48.5,206Q37,162,62.5,125Q88,88,144.5,110Q201,132,225.5,112Q250,92,284,89.5Q318,87,369.5,83Q421,79,433.5,124Q446,169,434.5,209.5Q423,250,428,288Z"
+          fill="#00cec9"
+        ></path>
+      </svg>
+      <StyledAsk>
+        <div>
+          <label htmlFor="popularity">How popular should it be?</label>
+          <StyledInputRange>
+            <StyledDescription>not at all</StyledDescription>
+            <input
+              type="range"
+              name="popularity"
+              min="0"
+              max="100"
+              step="1"
+              onChange={handlePopularity}
+            />
 
-      <div>
-        <label htmlFor="valance">valance - {valance}</label>
-        <input
-          type="range"
-          name="valance"
-          min="0.00"
-          max="1.00"
-          step="0.10"
-          onChange={handleValance}
-        />
-      </div>
-      <input type="button" value="next" onClick={tokenRequest} />
-    </div>
+            <StyledDescription>very!</StyledDescription>
+          </StyledInputRange>
+        </div>
+
+        <div>
+          <label htmlFor="valance">Do you look for some positive vibe?</label>
+
+          <StyledInputRange>
+            <StyledDescription>no joy</StyledDescription>
+            <input
+              type="range"
+              name="valance"
+              min="0.00"
+              max="1.00"
+              step="0.10"
+              onChange={handleValance}
+            />
+            <StyledDescription>I feel happy!</StyledDescription>
+          </StyledInputRange>
+        </div>
+        <StyledButton type="button" value="next" onClick={tokenRequest} />
+      </StyledAsk>
+    </StyledBlob>
   );
 }
