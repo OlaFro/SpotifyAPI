@@ -2,6 +2,13 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setGenre, setDance, setInstrument, currStep } from "../redux/actions";
 import { genres } from "../helpers/genres";
+import {
+  StyledAsk1,
+  StyledBlob1,
+  StyledInputRange,
+  StyledButton,
+  StyledSelect,
+} from "../styled components/styledForm1";
 
 export default function Form1() {
   const genre = useSelector((state) => state.genre);
@@ -28,41 +35,71 @@ export default function Form1() {
   }
 
   return (
-    <div>
-      <div>Choose your favorite genre</div>
-      <select type="submit" value={genre} onChange={handleGenre}>
-        <option value="">choose your genre</option>
-        {genres.map((elem) => (
-          <option value={`${elem}`} key={`${elem}`}>
-            {elem}
-          </option>
-        ))}
-      </select>
-      <div>
-        <label htmlFor="danceability">Danceability - {dance}</label>
-        <input
-          type="range"
-          name="danceability"
-          min="0.00"
-          max="1.00"
-          step="0.10"
-          onChange={handleDance}
-        />
-      </div>
-      <div>
-        <label htmlFor="instrumentalness">
-          Instrumentalness - {instrument}
-        </label>
-        <input
-          type="range"
-          name="instrumentalness"
-          min="0.00"
-          max="1.00"
-          step="0.10"
-          onChange={handleInstrument}
-        />
-      </div>
-      <input type="submit" value="next" onClick={sendForm1} />
-    </div>
+    <StyledBlob1>
+      <svg
+        viewBox="0 0 500 500"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        id="blobSvg"
+      >
+        <path
+          id="blob"
+          d="M464,287.5Q469,325,438,348.5Q407,372,376.5,384.5Q346,397,327,437Q308,477,268.5,487.5Q229,498,194.5,476.5Q160,455,143,419.5Q126,384,78.5,376Q31,368,36,326.5Q41,285,37.5,249.5Q34,214,43.5,179Q53,144,91.5,131.5Q130,119,153,100.5Q176,82,204,59Q232,36,270,28.5Q308,21,341,40.5Q374,60,395,90.5Q416,121,437.5,149.5Q459,178,459,214Q459,250,464,287.5Z"
+          fill="#00cec9"
+        ></path>
+      </svg>
+
+      <StyledAsk1>
+        <div>
+          <div>What genre do You want to hear?</div>
+
+          <StyledSelect type="submit" value={`${genre}`} onChange={handleGenre}>
+            <option>Genres:</option>
+            <option>---------</option>
+            {genres.map((elem) => (
+              <option value={`${elem}`} key={`${elem}`}>
+                {elem}
+              </option>
+            ))}
+          </StyledSelect>
+        </div>
+        <div>
+          <div>
+            <label htmlFor="danceability">How danceble it should be?</label>
+          </div>
+          <StyledInputRange>
+            <p>less</p>
+            <input
+              type="range"
+              name="danceability"
+              min="0.00"
+              max="1.00"
+              step="0.10"
+              onChange={handleDance}
+            />
+
+            <p>more</p>
+          </StyledInputRange>
+        </div>
+        <div>
+          <label htmlFor="instrumentalness">
+            More vocal or more instrumentalness?
+          </label>
+          <StyledInputRange>
+            <p>vocal</p>
+            <input
+              type="range"
+              name="instrumentalness"
+              min="0.00"
+              max="1.00"
+              step="0.10"
+              onChange={handleInstrument}
+            />
+            <p>instrumentalness</p>
+          </StyledInputRange>
+        </div>
+        <StyledButton type="submit" value="next" onClick={sendForm1} />
+      </StyledAsk1>
+    </StyledBlob1>
   );
 }
