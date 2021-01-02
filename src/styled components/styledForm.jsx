@@ -135,27 +135,19 @@ export const StyledWarning = styled.p`
 `;
 
 export const StyledLabel = styled.label`
-  display: flex;
   align-items: center;
 `;
 
-export const StyledRadioSpan = styled.span`
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border: 4px solid white;
-  border-radius: 50%;
-  :after {
-    content: "";
-    display: block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: red;
-    opacity: 1;
-  }
-`;
+export const StyledRadioSpan = styled.span``;
 
 export const StyledHiddenRadioInput = styled.input`
-  opacity: 1;
+  /* position: absolute; */
+  /* visibility: hidden;
+  display: none; */
+  
+
+  &:checked {
+    background-color: red;
+  }
+  }
 `;

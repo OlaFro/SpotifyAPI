@@ -62,17 +62,13 @@ export default function Form2() {
         <div>
           Choose the modality
           <div>
-            <StyledLabel htmlFor="major">
-              <StyledHiddenRadioInput
-                type="radio"
-                name="mode"
-                value="major"
-                onClick={handleMode}
-              />
-              <StyledRadioSpan />
-
-              <span>major</span>
-            </StyledLabel>
+            <StyledHiddenRadioInput
+              type="radio"
+              name="mode"
+              value="major"
+              onClick={handleMode}
+            />
+            major
             <input
               type="radio"
               name="mode"
