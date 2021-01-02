@@ -3,11 +3,9 @@ import Form2 from "./components/Form2";
 import Form3 from "./components/Form3";
 import Player from "./components/Player";
 import { useSelector } from "react-redux";
-import {
-  StyledApp,
-  StyledBody,
-  StyledHeading,
-} from "./styled components/styledApp";
+import { StyledApp, StyledHeading } from "./styled components/styledApp";
+import { GlobalStyle } from "./styled components/global";
+
 import { ThemeProvider } from "styled-components";
 import * as theme from "./styled components/theme";
 
@@ -16,8 +14,9 @@ function App() {
   const currStep = useSelector((state) => state.currStep);
 
   return (
-    <ThemeProvider theme={theme}>
-      <StyledBody>
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
         <StyledApp>
           <StyledHeading>Pick your songs</StyledHeading>
           {currStep === "Form1" ? <Form1 /> : null}
@@ -25,8 +24,8 @@ function App() {
           {currStep === "Form3" ? <Form3 /> : null}
           {currStep === "tracks" && tracks ? <Player /> : null}
         </StyledApp>
-      </StyledBody>
-    </ThemeProvider>
+      </ThemeProvider>
+    </>
   );
 }
 

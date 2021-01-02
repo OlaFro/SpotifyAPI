@@ -12,17 +12,15 @@ import axios from "axios";
 import {
   StyledAsk,
   StyledBlob,
-  StyledInputRange,
+  StyledInputContainer,
   StyledButton,
-  StyledSelect,
   StyledDescription,
-} from "../styled components/styledForm1";
+  StyledInput,
+} from "../styled components/styledForm";
 
 export default function Form3() {
   const popularity = useSelector((state) => state.popularity);
   const valance = useSelector((state) => state.dance);
-  // const token = useSelector((state) => state.token);
-  // const recommendations = useSelector((state) => state.recommendations);
   const genre = useSelector((state) => state.genre);
   const dance = useSelector((state) => state.dance);
   const instrument = useSelector((state) => state.instrument);
@@ -55,7 +53,7 @@ export default function Form3() {
       let token = res.data.access_token;
       dispatch(getToken(token));
       axios({
-        url: `${url2}?limit=10&market=DE&seed_genres=${genre}&target_instrumentalness=${instrument}&target_valance=${valance}&target_danceability=${dance}&target_mode=${mode}&target_tempo=${tempo}&target_popularity=${popularity}`,
+        url: `${url2}?limit=10&market=DE&seed_genres=${genre}&target_instrumentalness=${instrument}&target_valance=${valance}&target_danceability=${dance}&target_mode=${mode}&${tempo}&target_popularity=${popularity}`,
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -82,9 +80,9 @@ export default function Form3() {
       <StyledAsk>
         <div>
           <label htmlFor="popularity">How popular should it be?</label>
-          <StyledInputRange>
+          <StyledInputContainer>
             <StyledDescription>not at all</StyledDescription>
-            <input
+            <StyledInput
               type="range"
               name="popularity"
               min="0"
@@ -94,15 +92,15 @@ export default function Form3() {
             />
 
             <StyledDescription>very!</StyledDescription>
-          </StyledInputRange>
+          </StyledInputContainer>
         </div>
 
         <div>
           <label htmlFor="valance">Do you look for some positive vibe?</label>
 
-          <StyledInputRange>
+          <StyledInputContainer>
             <StyledDescription>no joy</StyledDescription>
-            <input
+            <StyledInput
               type="range"
               name="valance"
               min="0.00"
@@ -111,7 +109,7 @@ export default function Form3() {
               onChange={handleValance}
             />
             <StyledDescription>I feel happy!</StyledDescription>
-          </StyledInputRange>
+          </StyledInputContainer>
         </div>
         <StyledButton type="button" value="next" onClick={tokenRequest} />
       </StyledAsk>

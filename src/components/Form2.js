@@ -5,26 +5,39 @@ import {
   StyledAsk,
   StyledBlob,
   StyledButton,
-} from "../styled components/styledForm1";
+  StyledWarning,
+  StyledRadio,
+} from "../styled components/styledForm";
+import { useState } from "react";
 
 export default function Form2() {
-  const mode = useSelector((state) => state.mode);
   const tempo = useSelector((state) => state.tempo);
-
+  const [clicked, setClicked] = useState(false);
+  const [modality, setModality] = useState(false);
   const dispatch = useDispatch();
 
   function handleMode(e) {
     let selected;
     e.target.value === "major" ? (selected = 1) : (selected = 0);
     dispatch(setMode(selected));
+    setModality(true);
   }
   function handleTempo(e) {
-    dispatch(setTempo(e.target.value));
+    let chosenTempo;
+    if (e.target.value === "slow") {
+      chosenTempo = "min_tempo=60&max_tempo=90";
+    } else if (e.target.value === "standard") {
+      chosenTempo = "min_tempo=90&max_tempo=120";
+    } else {
+      chosenTempo = "min_tempo=120&max_tempo=200";
+    }
+
+    dispatch(setTempo(chosenTempo));
   }
   function sendForm2(e) {
     e.preventDefault();
-    if ((mode === 1 || mode === 0) && tempo) {
-      console.log("test");
+    setClicked(true);
+    if (modality && tempo) {
       dispatch(currStep("Form3"));
     }
   }
@@ -47,7 +60,7 @@ export default function Form2() {
         <div>
           Choose the modality
           <div>
-            <input
+            <StyledRadio
               type="radio"
               name="mode"
               value="major"
@@ -62,20 +75,40 @@ export default function Form2() {
             />
             <label htmlFor="major">minor</label>
           </div>
+          <StyledWarning display={clicked && !modality ? true : false} margin>
+            Please choose modality
+          </StyledWarning>
         </div>
         <div>
-          Pick the tempo
+          Pick the tempo in BPM
           <div>
             <input
-              type="number"
+              type="radio"
               name="tempo"
-              min="60"
-              max="180"
-              step="10"
-              onChange={handleTempo}
-            />{" "}
-            BPM
+              value="slow"
+              onClick={handleTempo}
+            />
+            <label htmlFor="slow"> 60-90</label>
+
+            <input
+              type="radio"
+              name="tempo"
+              value="standard"
+              onClick={handleTempo}
+            />
+            <label htmlFor="standard"> 90-120</label>
+
+            <input
+              type="radio"
+              name="tempo"
+              value="fast"
+              onClick={handleTempo}
+            />
+            <label htmlFor="fast"> above 120</label>
           </div>
+          <StyledWarning display={clicked && !tempo ? true : false} margin>
+            Please set the tempo
+          </StyledWarning>
         </div>
         <StyledButton type="button" value="next" onClick={sendForm2} />
       </StyledAsk>
