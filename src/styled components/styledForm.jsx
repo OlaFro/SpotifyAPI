@@ -134,18 +134,28 @@ export const StyledWarning = styled.p`
   opacity: ${(props) => (props.display ? "1" : "0")};
 `;
 
-export const StyledRadio = styled.input`
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-  ::before {
+export const StyledLabel = styled.label`
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledRadioSpan = styled.span`
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 4px solid white;
+  border-radius: 50%;
+  :after {
     content: "";
-    position: absolute;
+    display: block;
     width: 10px;
     height: 10px;
-    border: 10px solid white;
+    border-radius: 50%;
+    background-color: red;
     opacity: 1;
   }
+`;
+
+export const StyledHiddenRadioInput = styled.input`
+  opacity: 1;
 `;

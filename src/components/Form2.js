@@ -6,7 +6,9 @@ import {
   StyledBlob,
   StyledButton,
   StyledWarning,
-  StyledRadio,
+  StyledLabel,
+  StyledHiddenRadioInput,
+  StyledRadioSpan,
 } from "../styled components/styledForm";
 import { useState } from "react";
 
@@ -60,13 +62,17 @@ export default function Form2() {
         <div>
           Choose the modality
           <div>
-            <StyledRadio
-              type="radio"
-              name="mode"
-              value="major"
-              onClick={handleMode}
-            />
-            <label htmlFor="major">major</label>
+            <StyledLabel htmlFor="major">
+              <StyledHiddenRadioInput
+                type="radio"
+                name="mode"
+                value="major"
+                onClick={handleMode}
+              />
+              <StyledRadioSpan />
+
+              <span>major</span>
+            </StyledLabel>
             <input
               type="radio"
               name="mode"
