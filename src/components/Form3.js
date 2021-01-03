@@ -53,7 +53,7 @@ export default function Form3() {
       let token = res.data.access_token;
       dispatch(getToken(token));
       axios({
-        url: `${url2}?limit=10&market=DE&seed_genres=${genre}&target_instrumentalness=${instrument}&target_valance=${valance}&target_danceability=${dance}&target_mode=${mode}&${tempo}&target_popularity=${popularity}`,
+        url: `${url2}?limit=12&market=DE&seed_genres=${genre}&target_instrumentalness=${instrument}&target_valance=${valance}&target_danceability=${dance}&target_mode=${mode}&${tempo}&target_popularity=${popularity}`,
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -61,13 +61,7 @@ export default function Form3() {
           Authorization: "Bearer " + token,
         },
       }).then((res) => {
-        let tracksWithPreview = [];
-        for (let track of res.data.tracks) {
-          if (track.preview_url) {
-            tracksWithPreview.push(track);
-          }
-        }
-        dispatch(getRecommendations(tracksWithPreview));
+        dispatch(getRecommendations(res.data.tracks));
       });
     });
   }

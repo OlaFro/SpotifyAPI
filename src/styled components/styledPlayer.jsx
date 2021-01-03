@@ -12,7 +12,7 @@ export const StyledHeading = styled.h2`
 
 export const StyledPlayer = styled.div`
   display: grid;
-  width: 50%;
+  width: 60%;
   margin: auto;
   margin-top: 2rem;
   grid-template-columns: 10rem 1fr;
@@ -22,36 +22,21 @@ export const StyledPlayer = styled.div`
   justify-items: start;
 `;
 
-export const StyledTracks = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  row-gap: 4rem;
-`;
-
-export const StyledTracksDescription = styled.span`
-  text-align: left;
-  color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  grid-row-gap: 1rem;
-  padding: 0rem 1rem;
-  align-self: center;
-`;
-
 export const StyledGrid = styled.div`
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   row-gap: 1rem;
   width: 100%;
+  margin: 0 1rem 0 2rem;
 `;
 
 export const StyledAgainButton = styled.input`
-background-color: transparent;
-border: 4px solid white;
-color: white;
-width: 188px;
-font-size: 1.2rem;
-font-family: "Montserrat", sans-serif;
-
+  background-color: transparent;
+  border: 4px solid white;
+  color: white;
+  width: 188px;
+  font-size: 1.2rem;
+  font-family: "Montserrat", sans-serif;
 
   :hover {
     background-color: white;
@@ -59,4 +44,10 @@ font-family: "Montserrat", sans-serif;
   }
 
   :active {
-    outline: none;`;
+    outline: none;
+  }
+`;
+
+export const StyledIframe = styled.iframe`
+  border: 4px solid white;
+`;

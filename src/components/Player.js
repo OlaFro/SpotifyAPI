@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { currStep } from "../redux/actions";
 import {
   StyledPlayer,
-  StyledTracks,
   StyledHeading,
-  StyledTracksDescription,
   StyledGrid,
   StyledAgainButton,
+  StyledIframe,
 } from "../styled components/styledPlayer";
+import Loader from "./Loader";
 
 export default function Player() {
   const recommendations = useSelector((state) => state.recommendations);
@@ -18,34 +18,28 @@ export default function Player() {
     dispatch(currStep("Form1"));
   }
   return (
-    <StyledPlayer>
-      <StyledHeading>Bunch of songs Spotify has for You:</StyledHeading>
-      <StyledGrid>
-        {recommendations.map((track, index) => (
-          <StyledTracks key={index} className="track-list">
-            <StyledTracksDescription>
-              {track.artists[0].name}, {track.name}
-            </StyledTracksDescription>
-            <audio controls>
-              <source src={track.preview_url} type="audio/ogg" />
-            </audio>
-          </StyledTracks>
-        ))}
-      </StyledGrid>
-      <StyledAgainButton type="button" value="again!" onClick={sendBack} />
-    </StyledPlayer>
+    <div>
+      <StyledPlayer>
+        <StyledHeading>Bunch of songs Spotify has for You:</StyledHeading>
+        {recommendations ? (
+          <StyledGrid>
+            {recommendations.map((track, index) => (
+              <StyledIframe
+                src={`https://open.spotify.com/embed/track/${track.id}`}
+                width="250"
+                height="80"
+                key="index"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+              />
+            ))}
+          </StyledGrid>
+        ) : (
+          <Loader />
+        )}
+        <StyledAgainButton type="button" value="again!" onClick={sendBack} />
+      </StyledPlayer>
+    </div>
   );
 }
-
-// Iframe player
-// import Iframe from "react-iframe";
-// <div>
-//   <Iframe
-//     src="https://open.spotify.com/embed/playlist/37i9dQZEVXcVqL4U5iL6lS"
-//     width="300"
-//     height="380"
-//     frameborder="0"
-//     allowtransparency="true"
-//     allow="encrypted-media"
-//   />
-// </div>
