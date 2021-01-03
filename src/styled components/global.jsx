@@ -15,4 +15,5 @@ body{
     rgba(0, 212, 255, 1) 100%
   );
   font-family: 'Montserrat', sans-serif;
+  font-weight: 900
 }`;

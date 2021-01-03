@@ -1,6 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { currStep } from "../redux/actions";
+import {
+  StyledPlayer,
+  StyledTracks,
+  StyledHeading,
+  StyledTracksDescription,
+  StyledGrid,
+  StyledAgainButton,
+} from "../styled components/styledPlayer";
 
 export default function Player() {
   const recommendations = useSelector((state) => state.recommendations);
@@ -10,23 +18,22 @@ export default function Player() {
     dispatch(currStep("Form1"));
   }
   return (
-    <div>
-      <h2>Suggested songs:</h2>
-
-      {recommendations.map((track, index) => (
-        <div key={index} className="track-list">
-          <div>
-            {track.artists[0].name}, {track.name}
-          </div>
-          <div>
+    <StyledPlayer>
+      <StyledHeading>Bunch of songs Spotify has for You:</StyledHeading>
+      <StyledGrid>
+        {recommendations.map((track, index) => (
+          <StyledTracks key={index} className="track-list">
+            <StyledTracksDescription>
+              {track.artists[0].name}, {track.name}
+            </StyledTracksDescription>
             <audio controls>
               <source src={track.preview_url} type="audio/ogg" />
             </audio>
-          </div>
-        </div>
-      ))}
-      <input type="button" value="again!" onClick={sendBack} />
-    </div>
+          </StyledTracks>
+        ))}
+      </StyledGrid>
+      <StyledAgainButton type="button" value="again!" onClick={sendBack} />
+    </StyledPlayer>
   );
 }
 

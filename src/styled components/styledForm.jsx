@@ -40,41 +40,64 @@ export const StyledBlob = styled.div`
 
 export const StyledInputContainer = styled.div`
   display: flex;
-  justify-content: center;
+  ${(props) => {
+    if (props.step1) {
+      return `
+      justify-content: center; 
+       `;
+    } else if (props.step2) {
+      return `
+      justify-content: space-between;
+       align-items: center;
+       width: 80%;
+       margin: auto;
+       margin-top: 0.5rem
+      `;
+    }
+  }}
 `;
 
 export const StyledButton = styled.input`
   background-color: transparent;
-  border: 2px solid white;
+  border: 4px solid white;
   padding: 5px 15px;
   margin: 0, auto;
   color: white;
   font-size: 1.2rem;
+  font-family: "Montserrat", sans-serif;
+
   :hover {
     background-color: white;
     color: ${(props) => props.theme.aqua};
   }
+
+  :active {
+    outline: none;
+  }
 `;
 
 export const StyledSelect = styled.select`
-  background-color: ${(props) => props.theme.aqua};
+  background-color: transparent;
   color: white;
   outline: none;
   font-size: 1rem;
   padding: 5px;
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
-  border: 2px solid white;
+  border: 4px solid white;
   margin-top: 1rem;
+  font-family: "Montserrat", sans-serif;
 
   :hover {
     background-color: ${(props) => props.theme.aqua};
+    color: white;
   }
 `;
 
 export const StyledDescription = styled.p`
   font-size: 1rem;
   padding: 0 10px;
+  font-weight: 500;
 `;
 
 export const StyledInput = styled.input`
@@ -124,13 +147,16 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const StyledWarning = styled.p`
-  color: #f836ae;
+export const StyledRadio = styled.input`
+  width: 17px;
+  height: 17px;
+`;
 
+export const StyledWarning = styled.p`
+  color: ${(props) => props.theme.warning};
   font-size: 0.8rem;
   font-weight: 900;
-  text-transform: uppercase;
-  margin-top: ${(props) => (props.margin ? "0.3rem" : "-0.2rem")};
+  margin-top: ${(props) => (props.margin ? "0.4rem" : "-0.2rem")};
   opacity: ${(props) => (props.display ? "1" : "0")};
 `;
 
@@ -138,16 +164,16 @@ export const StyledLabel = styled.label`
   align-items: center;
 `;
 
-export const StyledRadioSpan = styled.span``;
+export const StyledSpan = styled.span`
+  font-weight: 500;
+  font-size: 1rem;
+  margin-left: -10px;
+  margin-top: 2px;
+`;
 
-export const StyledHiddenRadioInput = styled.input`
-  /* position: absolute; */
-  /* visibility: hidden;
-  display: none; */
-  
-
-  &:checked {
-    background-color: red;
-  }
-  }
+export const StyledTempoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 19rem;
+  margin-top: 0.5rem;
 `;

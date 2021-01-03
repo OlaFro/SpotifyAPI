@@ -1,2 +1,2 @@
-export const aqua = "#00cec9";
-export const paleAqua = "rgba(0, 206, 201, 0.4)";
+export const aqua = "#7fc5e2";
+export const warning = "#50494d";

@@ -50,8 +50,9 @@ export default function Form1() {
       >
         <path
           d="M464,287.5Q469,325,438,348.5Q407,372,376.5,384.5Q346,397,327,437Q308,477,268.5,487.5Q229,498,194.5,476.5Q160,455,143,419.5Q126,384,78.5,376Q31,368,36,326.5Q41,285,37.5,249.5Q34,214,43.5,179Q53,144,91.5,131.5Q130,119,153,100.5Q176,82,204,59Q232,36,270,28.5Q308,21,341,40.5Q374,60,395,90.5Q416,121,437.5,149.5Q459,178,459,214Q459,250,464,287.5Z"
-          fill="#00cec9"
           stroke="white"
+          fill="transparent"
+          strokeWidth="4px"
         ></path>
       </svg>
 
@@ -76,7 +77,7 @@ export default function Form1() {
           <div>
             <label htmlFor="danceability">How danceble it should be?</label>
           </div>
-          <StyledInputContainer>
+          <StyledInputContainer step1>
             <StyledDescription>less</StyledDescription>
             <StyledInput
               type="range"
@@ -110,7 +111,7 @@ export default function Form1() {
             <StyledDescription>instrumentalness</StyledDescription>
           </StyledInputContainer>
           <StyledWarning display={clicked && !instrument ? true : false}>
-            Please select instrumentalness
+            Please select amount of vocal
           </StyledWarning>
         </div>
         <StyledButton type="submit" value="next" onClick={sendForm1} />

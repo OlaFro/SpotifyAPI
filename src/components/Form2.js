@@ -6,9 +6,10 @@ import {
   StyledBlob,
   StyledButton,
   StyledWarning,
-  StyledLabel,
-  StyledHiddenRadioInput,
-  StyledRadioSpan,
+  StyledSpan,
+  StyledInputContainer,
+  StyledRadio,
+  StyledTempoContainer,
 } from "../styled components/styledForm";
 import { useState } from "react";
 
@@ -54,60 +55,63 @@ export default function Form2() {
       >
         <path
           d="M399,291.5Q408,333,368.5,348.5Q329,364,300,395Q271,426,232,413Q193,400,128,408Q63,416,53.5,358.5Q44,301,67,256Q90,211,88.5,158Q87,105,142.5,108.5Q198,112,236,80.5Q274,49,330,51.5Q386,54,383,118Q380,182,385,216Q390,250,399,291.5Z"
-          fill="#00cec9"
+          fill="transparent"
+          stroke="white"
+          strokeWidth="4px"
         ></path>
       </svg>
 
       <StyledAsk step2>
         <div>
           Choose the modality
-          <div>
-            <StyledHiddenRadioInput
+          <StyledInputContainer step2>
+            <StyledRadio
               type="radio"
               name="mode"
               value="major"
               onClick={handleMode}
             />
-            major
-            <input
+            <StyledSpan>major</StyledSpan>
+
+            <StyledRadio
               type="radio"
               name="mode"
               value="minor"
               onClick={handleMode}
             />
-            <label htmlFor="major">minor</label>
-          </div>
+            <StyledSpan>minor</StyledSpan>
+          </StyledInputContainer>
           <StyledWarning display={clicked && !modality ? true : false} margin>
             Please choose modality
           </StyledWarning>
         </div>
         <div>
           Pick the tempo in BPM
-          <div>
-            <input
+          <StyledTempoContainer>
+            <StyledRadio
               type="radio"
               name="tempo"
               value="slow"
               onClick={handleTempo}
             />
-            <label htmlFor="slow"> 60-90</label>
+            <StyledSpan> 60-90</StyledSpan>
 
-            <input
+            <StyledRadio
               type="radio"
               name="tempo"
               value="standard"
               onClick={handleTempo}
             />
-            <label htmlFor="standard"> 90-120</label>
+            <StyledSpan> 90-120</StyledSpan>
 
-            <input
+            <StyledRadio
               type="radio"
               name="tempo"
               value="fast"
               onClick={handleTempo}
             />
-            <label htmlFor="fast"> above 120</label>
-          </div>
+            <StyledSpan> above 120</StyledSpan>
+          </StyledTempoContainer>
           <StyledWarning display={clicked && !tempo ? true : false} margin>
             Please set the tempo
           </StyledWarning>
