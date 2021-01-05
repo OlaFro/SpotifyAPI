@@ -24,7 +24,8 @@ export const StyledAsk = styled.div`
     } else {
       return `height: 40%;
       top: 54%;
-      left: 52%;`;
+      left: 52%;`
+    
     }
   }}
 `;
