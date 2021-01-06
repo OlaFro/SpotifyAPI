@@ -27,7 +27,7 @@ export const StyledGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   row-gap: 1rem;
   width: 100%;
-  margin: 0 1rem 0 2rem;
+  margin: 0 0 0 2rem;
 `;
 
 export const StyledAgainButton = styled.input`

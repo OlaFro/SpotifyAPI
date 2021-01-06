@@ -18,3 +18,9 @@ export const StyledHeading = styled.h1`
   border-bottom: 25px solid white;
   overflow: hidden;
 `;
+
+export const StyledFooter = styled.footer`
+  font-size: 0.8rem;
+  color: white;
+  margin-top: 3rem;
+`;

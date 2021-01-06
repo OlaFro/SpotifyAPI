@@ -36,6 +36,7 @@ export const StyledBlob = styled.div`
   width: 40rem;
   height: 40rem;
   position: relative;
+  margin-top: 2rem;
 `;
 
 export const StyledInputContainer = styled.div`

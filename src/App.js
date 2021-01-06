@@ -3,7 +3,11 @@ import Form2 from "./components/Form2";
 import Form3 from "./components/Form3";
 import Player from "./components/Player";
 import { useSelector } from "react-redux";
-import { StyledApp, StyledHeading } from "./styled components/styledApp";
+import {
+  StyledApp,
+  StyledHeading,
+  StyledFooter,
+} from "./styled components/styledApp";
 import { GlobalStyle } from "./styled components/global";
 
 import { ThemeProvider } from "styled-components";
@@ -23,6 +27,9 @@ function App() {
           {currStep === "Form2" ? <Form2 /> : null}
           {currStep === "Form3" ? <Form3 /> : null}
           {currStep === "tracks" && tracks ? <Player /> : null}
+          <StyledFooter>
+            Created by Ola Frost. Powered by Spotify API.
+          </StyledFooter>
         </StyledApp>
       </ThemeProvider>
     </>
@@ -30,20 +37,3 @@ function App() {
 }
 
 export default App;
-
-//create playlist request
-// function createPlaylist(e) {
-//   e.preventDefault();
-//   axios({
-//     url: "https://api.spotify.com/v1/users/faltblatt/playlists",
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//       Authorization: "Bearer " + token,
-//     },
-//     data: {
-//       public: false,
-//     },
-//   });
-// }
