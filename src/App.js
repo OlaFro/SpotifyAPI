@@ -1,6 +1,4 @@
-import Form1 from "./components/Form1";
-import Form2 from "./components/Form2";
-import Form3 from "./components/Form3";
+import WholeForm from "./components/WholeForm";
 import Player from "./components/Player";
 import { useSelector } from "react-redux";
 import {
@@ -23,9 +21,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <StyledApp>
           <StyledHeading>Pick your songs</StyledHeading>
-          {currStep === "Form1" ? <Form1 /> : null}
-          {currStep === "Form2" ? <Form2 /> : null}
-          {currStep === "Form3" ? <Form3 /> : null}
+          {currStep !== "tracks" ? <WholeForm /> : null}
           {currStep === "tracks" && tracks ? <Player /> : null}
           <StyledFooter>
             Created by Ola Frost. Powered by Spotify API.
