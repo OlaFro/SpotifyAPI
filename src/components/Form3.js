@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import {useState} from 'react';
 import {
   setPopularity,
   setValance,
@@ -16,17 +17,20 @@ import {
   StyledButton,
   StyledDescription,
   StyledInput,
+  StyledWarning
 } from "../styled components/styledForm";
 
 export default function Form3() {
   const popularity = useSelector((state) => state.popularity);
-  const valance = useSelector((state) => state.dance);
+  const valance = useSelector((state) => state.valance);
   const genre = useSelector((state) => state.genre);
   const dance = useSelector((state) => state.dance);
   const instrument = useSelector((state) => state.instrument);
   const mode = useSelector((state) => state.mode);
   const tempo = useSelector((state) => state.tempo);
   const dispatch = useDispatch();
+
+  const [clicked, setClicked] = useState(false);
 
   function handleValance(e) {
     dispatch(setValance(e.target.value));
@@ -38,6 +42,9 @@ export default function Form3() {
 
   function tokenRequest(e) {
     e.preventDefault();
+    setClicked(true)
+    if (popularity && valance) {
+      
     dispatch(currStep("tracks"));
     let url1 = "https://accounts.spotify.com/api/token";
     let url2 = "https://api.spotify.com/v1/recommendations";
@@ -64,6 +71,7 @@ export default function Form3() {
         dispatch(getRecommendations(res.data.tracks));
       });
     });
+  }
   }
 
   return (
@@ -97,6 +105,9 @@ export default function Form3() {
 
             <StyledDescription>very!</StyledDescription>
           </StyledInputContainer>
+          <StyledWarning display={clicked && !popularity ? true : false} margin>
+            Please choose popularity 
+          </StyledWarning>
         </div>
 
         <div>
@@ -114,6 +125,9 @@ export default function Form3() {
             />
             <StyledDescription>I feel happy!</StyledDescription>
           </StyledInputContainer>
+          <StyledWarning display={clicked && !valance ? true : false} margin>
+            Please choose the mood
+          </StyledWarning>
         </div>
         <StyledButton type="button" value="next" onClick={tokenRequest} />
       </StyledAsk>
