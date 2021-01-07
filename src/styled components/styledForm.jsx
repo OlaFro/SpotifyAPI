@@ -8,7 +8,7 @@ export const StyledAsk = styled.div`
   border: 4px solid white;
   padding: 2rem;
   min-height: 60%;
-  border-radius: 50px;
+
   align-items: center;
 `;
 
@@ -46,6 +46,8 @@ export const StyledButton = styled.input`
   font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
   width: 6rem;
+  height: 3rem;
+  cursor: pointer;
 
   :hover {
     background-color: white;

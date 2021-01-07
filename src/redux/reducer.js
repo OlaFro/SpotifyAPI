@@ -8,7 +8,7 @@ let initialState = {
   valance: "",
   recommendations: "",
   token: "",
-  currStep: "Form1",
+  currStep: "Start",
 };
 
 export const reducer = (state = initialState, action) => {

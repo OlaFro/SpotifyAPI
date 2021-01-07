@@ -21,3 +21,9 @@ export const StyledFooter = styled.footer`
   padding-top: 0.5rem;
   border-top: 1px solid white;
 `;
+
+export const StyledText = styled.h2`
+  width: 40%;
+  border: 4px solid white;
+  padding: 2rem;
+`;

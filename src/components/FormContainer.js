@@ -4,18 +4,15 @@ import Form3 from "./Form3";
 import { StyledContainer } from "../styled components/styledFormContainer";
 
 import React from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function FormContainer() {
-  //   const currStep = useSelector((state) => state.currStep);
+  const currStep = useSelector((state) => state.currStep);
   return (
     <StyledContainer>
-      <Form1 />
-      <Form2 />
-      <Form3 />
-      {/* {currStep === "Form1" ? <Form1 /> : null}
+      {currStep === "Form1" ? <Form1 /> : null}
       {currStep === "Form2" ? <Form2 /> : null}
-      {currStep === "Form3" ? <Form3 /> : null} */}
+      {currStep === "Form3" ? <Form3 /> : null}
     </StyledContainer>
   );
 }
