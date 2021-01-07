@@ -116,7 +116,7 @@ export default function Form2() {
             Please set the tempo
           </StyledWarning>
         </StyledCentering>
-        <StyledButton type="button" value="next" onClick={sendForm2} />
+        <StyledButton onClick={sendForm2}>next</StyledButton>
       </StyledAsk>
     </div>
   );

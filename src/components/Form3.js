@@ -115,7 +115,7 @@ export default function Form3() {
             Please choose the mood
           </StyledWarning>
         </StyledCentering>
-        <StyledButton type="button" value="next" onClick={tokenRequest} />
+        <StyledButton onClick={tokenRequest}>next</StyledButton>
       </StyledAsk>
     </div>
   );

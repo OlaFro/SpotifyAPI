@@ -6,6 +6,7 @@ import {
   StyledApp,
   StyledHeading,
   StyledFooter,
+  StyledLink,
 } from "./styled components/styledApp";
 
 import { GlobalStyle } from "./styled components/global";
@@ -21,7 +22,7 @@ function App() {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <StyledApp>
-          <StyledHeading>Pick your songs</StyledHeading>
+          <StyledHeading>Choosify</StyledHeading>
           {currStep === "Start" ? <Start /> : null}
           {currStep === "Form1" ||
           currStep === "Form2" ||
@@ -30,7 +31,9 @@ function App() {
           ) : null}
           {currStep === "tracks" && tracks ? <Player /> : null}
           <StyledFooter>
-            Created by Ola Frost. Powered by Spotify API.
+            Created by{" "}
+            <StyledLink href="https://github.com/OlaFro">Ola Frost</StyledLink>.
+            Powered by Spotify API.
           </StyledFooter>
         </StyledApp>
       </ThemeProvider>

@@ -113,7 +113,7 @@ export default function Form1() {
             Please select amount of vocal
           </StyledWarning>
         </StyledCentering>
-        <StyledButton type="submit" value="next" onClick={sendForm1} />
+        <StyledButton onClick={sendForm1}>next</StyledButton>
       </StyledAsk>
     </div>
   );

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const StyledAsk = styled.div`
   font-size: 1.2rem;
@@ -37,21 +37,54 @@ export const StyledCentering = styled.div`
   align-items: center;
 `;
 
-export const StyledButton = styled.input`
-  background-color: transparent;
-  border: 4px solid white;
+const animateBg = keyframes`
+0% {
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+100% {
+ left: 100%; 
+ width: 100%;
+}
+`;
+
+export const StyledButton = styled.div`
+  background-color: white;
+  color: ${(props) => props.theme.aqua};
   padding: 5px 15px;
   margin: 0, auto;
-  color: white;
   font-size: 1.2rem;
-  font-family: "Montserrat", sans-serif;
-  width: 6rem;
-  height: 3rem;
+  width: 3rem;
+  height: 2rem;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  ::after {
+    content: "";
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 200ms ease-in;
+  }
 
   :hover {
-    background-color: white;
-    color: ${(props) => props.theme.aqua};
+    color: white;
+    background-color: ${(props) => props.theme.aqua};
+    ::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
   }
 
   :active {
