@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setMode, setTempo, currStep } from "../redux/actions";
 import {
   StyledAsk,
-  StyledBlob,
+  StyledCentering,
   StyledButton,
   StyledWarning,
   StyledSpan,
@@ -46,8 +46,8 @@ export default function Form2() {
   }
 
   return (
-    <StyledBlob>
-      <svg
+    <div>
+      {/* <svg
         viewBox="0 0 500 500"
         xmlns="http://www.w3.org/2000/svg"
         width="100%"
@@ -59,10 +59,10 @@ export default function Form2() {
           stroke="white"
           strokeWidth="4px"
         ></path>
-      </svg>
+      </svg> */}
 
       <StyledAsk step2>
-        <div>
+        <StyledCentering>
           Choose the modality
           <StyledInputContainer step2>
             <StyledRadio
@@ -84,8 +84,8 @@ export default function Form2() {
           <StyledWarning display={clicked && !modality ? true : false} margin>
             Please choose modality
           </StyledWarning>
-        </div>
-        <div>
+        </StyledCentering>
+        <StyledCentering>
           Pick the tempo in BPM
           <StyledTempoContainer>
             <StyledRadio
@@ -115,9 +115,9 @@ export default function Form2() {
           <StyledWarning display={clicked && !tempo ? true : false} margin>
             Please set the tempo
           </StyledWarning>
-        </div>
+        </StyledCentering>
         <StyledButton type="button" value="next" onClick={sendForm2} />
       </StyledAsk>
-    </StyledBlob>
+    </div>
   );
 }

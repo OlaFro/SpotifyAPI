@@ -1,43 +1,15 @@
 import styled from "styled-components";
 
 export const StyledAsk = styled.div`
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: 70%;
   font-size: 1.2rem;
   color: white;
   display: flex;
   flex-direction: column;
+  border: 4px solid white;
+  padding: 2rem;
+  min-height: 60%;
+  border-radius: 50px;
   align-items: center;
-  justify-content: space-between;
-  ${(props) => {
-    if (props.step1) {
-      return `
-      height: 57%;
-      top: 57%;
-      left: 48%;`;
-    } else if (props.step2) {
-      return `
-      height: 40%;
-      top: 53%;
-      left: 45%;`;
-    } else {
-      return `height: 40%;
-      top: 54%;
-      left: 52%;`
-    
-    }
-  }}
-`;
-
-export const StyledBlob = styled.div`
-  margin: auto;
-  background: center no-repeat url(.);
-  background-size: 100%;
-  width: 40rem;
-  height: 40rem;
-  position: relative;
-  margin-top: 2rem;
 `;
 
 export const StyledInputContainer = styled.div`
@@ -59,6 +31,12 @@ export const StyledInputContainer = styled.div`
   }}
 `;
 
+export const StyledCentering = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const StyledButton = styled.input`
   background-color: transparent;
   border: 4px solid white;
@@ -67,6 +45,7 @@ export const StyledButton = styled.input`
   color: white;
   font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
+  width: 6rem;
 
   :hover {
     background-color: white;
@@ -89,6 +68,7 @@ export const StyledSelect = styled.select`
   border: 4px solid white;
   margin-top: 1rem;
   font-family: "Montserrat", sans-serif;
+  width: 50%;
 
   :hover {
     background-color: ${(props) => props.theme.aqua};

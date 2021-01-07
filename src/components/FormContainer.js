@@ -1,13 +1,13 @@
 import Form1 from "./Form1";
 import Form2 from "./Form2";
 import Form3 from "./Form3";
-import { StyledContainer } from "../styled components/styledWholeForm";
+import { StyledContainer } from "../styled components/styledFormContainer";
 
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
-export default function WholeForm() {
-  const currStep = useSelector((state) => state.currStep);
+export default function FormContainer() {
+  //   const currStep = useSelector((state) => state.currStep);
   return (
     <StyledContainer>
       <Form1 />

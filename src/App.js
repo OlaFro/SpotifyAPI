@@ -1,4 +1,4 @@
-import WholeForm from "./components/WholeForm";
+import FormContainer from "./components/FormContainer";
 import Player from "./components/Player";
 import { useSelector } from "react-redux";
 import {
@@ -21,7 +21,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <StyledApp>
           <StyledHeading>Pick your songs</StyledHeading>
-          {currStep !== "tracks" ? <WholeForm /> : null}
+          {currStep !== "tracks" ? <FormContainer /> : null}
           {currStep === "tracks" && tracks ? <Player /> : null}
           <StyledFooter>
             Created by Ola Frost. Powered by Spotify API.

@@ -4,7 +4,7 @@ import { setGenre, setDance, setInstrument, currStep } from "../redux/actions";
 import { genres } from "../helpers/genres";
 import {
   StyledAsk,
-  StyledBlob,
+  StyledCentering,
   StyledInputContainer,
   StyledButton,
   StyledSelect,
@@ -41,8 +41,8 @@ export default function Form1() {
   }
 
   return (
-    <StyledBlob>
-      <svg
+    <div>
+      {/* <svg
         viewBox="0 0 500 500"
         xmlns="http://www.w3.org/2000/svg"
         width="100%"
@@ -54,11 +54,10 @@ export default function Form1() {
           fill="transparent"
           strokeWidth="4px"
         ></path>
-      </svg>
-
+      </svg> */}
       <StyledAsk step1>
-        <div>
-          <div>What genre do You want to hear?</div>
+        <StyledCentering>
+          <label htmlFor="genre">What genre do You want to hear?</label>
 
           <StyledSelect type="submit" value={`${genre}`} onChange={handleGenre}>
             <option>Genres:</option>
@@ -72,8 +71,8 @@ export default function Form1() {
           <StyledWarning display={clicked && !genre ? true : false} margin>
             Please select genre
           </StyledWarning>
-        </div>
-        <div>
+        </StyledCentering>
+        <StyledCentering>
           <div>
             <label htmlFor="danceability">How danceble it should be?</label>
           </div>
@@ -93,8 +92,8 @@ export default function Form1() {
           <StyledWarning display={clicked && !dance ? true : false}>
             Please select danceability
           </StyledWarning>
-        </div>
-        <div>
+        </StyledCentering>
+        <StyledCentering>
           <label htmlFor="instrumentalness">
             More vocal or just instruments?
           </label>
@@ -113,9 +112,9 @@ export default function Form1() {
           <StyledWarning display={clicked && !instrument ? true : false}>
             Please select amount of vocal
           </StyledWarning>
-        </div>
+        </StyledCentering>
         <StyledButton type="submit" value="next" onClick={sendForm1} />
       </StyledAsk>
-    </StyledBlob>
+    </div>
   );
 }
