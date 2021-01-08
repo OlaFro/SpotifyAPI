@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const StyledAsk = styled.div`
   font-size: 1.2rem;
@@ -8,8 +8,8 @@ export const StyledAsk = styled.div`
   border: 4px solid white;
   padding: 2rem;
   min-height: 60%;
-
   align-items: center;
+  /* width: 100%; */
 `;
 
 export const StyledInputContainer = styled.div`
@@ -35,19 +35,7 @@ export const StyledCentering = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const animateBg = keyframes`
-0% {
-  left: 0;
-  top: 0;
-  width: 100%;
-}
-
-100% {
- left: 100%; 
- width: 100%;
-}
+  justify-content: center;
 `;
 
 export const StyledButton = styled.div`
@@ -64,50 +52,101 @@ export const StyledButton = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  z-index: 0;
 
   ::after {
     content: "";
-    background-color: white;
+
+    background-color: ${(props) => props.theme.pink};
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
+    left: -25%;
+    width: 7rem;
+    height: 7rem;
     transform: scaleX(0);
-    transform-origin: right;
+    transform-origin: left;
     transition: transform 200ms ease-in;
+    z-index: 1;
+    border-radius: 100%;
+  }
+
+  ::before {
+    content: "";
+    position: absolute;
+    opacity: 0;
+
+    ${(props) => {
+      if (props.start) {
+        return `content: "Start!"`;
+      } else if (props.next) {
+        return `content: "next"`;
+      }
+    }}
   }
 
   :hover {
-    color: white;
-    background-color: ${(props) => props.theme.aqua};
     ::after {
       transform: scaleX(1);
-      transform-origin: left;
+      transform-origin: none;
+    }
+    ::before {
+      color: white;
+      opacity: 1;
+      z-index: 2;
+    }
+
+    :active {
+      outline: none;
     }
   }
+`;
+
+export const StyledSelectContainer = styled.div`
+  position: relative;
+`;
+
+export const StyledSelect = styled.select`
+  -moz-appearance: none;
+  background-color: transparent;
+  border: 4px solid white;
+  padding: 5px;
+  margin: 5px;
+  height: 2.5rem;
+  color: white;
+  font-family: "Montserrat", sans-serif;
 
   :active {
     outline: none;
   }
 `;
-
-export const StyledSelect = styled.select`
-  background-color: transparent;
+export const StyledOption = styled.option`
+  -moz-appearance: none;
+  background-color: ${(props) => props.theme.aqua};
   color: white;
-  outline: none;
-  font-size: 1rem;
-  padding: 5px;
-  -moz-appearance: textfield;
-  -webkit-appearance: textfield;
-  border: 4px solid white;
-  margin-top: 1rem;
-  font-family: "Montserrat", sans-serif;
-  width: 50%;
+`;
 
-  :hover {
-    background-color: ${(props) => props.theme.aqua};
-    color: white;
+export const StyledArrow = styled.span`
+  width: 40px;
+  height: 35px;
+  background-color: white;
+  top: 8px;
+  right: 8px;
+  position: absolute;
+  pointer-events: none;
+
+  ::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid ${(props) => props.theme.pink};
+  }
+  :hover::after {
+    border-top: 6px solid ${(props) => props.theme.aqua};
   }
 `;
 

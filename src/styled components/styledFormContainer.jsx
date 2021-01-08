@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 export const StyledContainer = styled.div`
   display: flex;
-  width: 80%;
-  justify-content: space-evenly;
-  align-items: stretch;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  margin-top: -5rem;
+
   @media (max-width: 1650px) {
     flex-direction: column;
   }

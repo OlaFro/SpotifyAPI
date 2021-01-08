@@ -7,4 +7,5 @@ export const StyledStart = styled.h2`
   justify-content: space-evenly;
   align-items: center;
   font-size: 1.5rem;
+  margin-top: 0;
 `;

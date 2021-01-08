@@ -6,7 +6,10 @@ import {
   StyledAsk,
   StyledCentering,
   StyledInputContainer,
+  StyledSelectContainer,
   StyledSelect,
+  StyledOption,
+  StyledArrow,
   StyledDescription,
   StyledInput,
   StyledWarning,
@@ -56,18 +59,24 @@ export default function Form1() {
         ></path>
       </svg> */}
       <StyledAsk step1>
-        <StyledCentering>
+        <StyledCentering select>
           <label htmlFor="genre">What genre do You want to hear?</label>
-
-          <StyledSelect type="submit" value={`${genre}`} onChange={handleGenre}>
-            <option>Genres:</option>
-            <option>---------</option>
-            {genres.map((elem) => (
-              <option value={`${elem}`} key={`${elem}`}>
-                {elem}
-              </option>
-            ))}
-          </StyledSelect>
+          <StyledSelectContainer>
+            <StyledSelect
+              type="submit"
+              value={`${genre}`}
+              onChange={handleGenre}
+            >
+              <StyledOption>Genres:</StyledOption>
+              <StyledOption>---------</StyledOption>
+              {genres.map((elem) => (
+                <StyledOption value={`${elem}`} key={`${elem}`}>
+                  {elem}
+                </StyledOption>
+              ))}
+            </StyledSelect>
+            <StyledArrow />
+          </StyledSelectContainer>
           <StyledWarning display={clicked && !genre ? true : false} margin>
             Please select genre
           </StyledWarning>
@@ -113,7 +122,9 @@ export default function Form1() {
             Please select amount of vocal
           </StyledWarning>
         </StyledCentering>
-        <StyledButton onClick={sendForm1}>next</StyledButton>
+        <StyledButton next onClick={sendForm1}>
+          next
+        </StyledButton>
       </StyledAsk>
     </div>
   );

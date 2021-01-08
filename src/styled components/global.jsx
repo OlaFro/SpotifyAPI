@@ -7,13 +7,7 @@ body{
   padding: 0;
   width: 99.8vw;
   height: 100vh;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    105deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(249, 184, 199, 1) 0%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background: ${(props) => props.theme.gradient};
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   color: white;

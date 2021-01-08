@@ -19,8 +19,8 @@ function App() {
 
   return (
     <>
-      <GlobalStyle />
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <StyledApp>
           <StyledHeading>Choosify</StyledHeading>
           {currStep === "Start" ? <Start /> : null}

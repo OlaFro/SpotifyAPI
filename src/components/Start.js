@@ -12,11 +12,13 @@ export default function Start() {
   return (
     <StyledStart>
       <StyledText>
-        Hey! Do you want to listen new music based on your mood? Do you want to
-        pick something especially danceable or only instrumental? This tool is
-        for you. <div>Enjoy!</div>
+        Hey! Do you want to listen to new music based on your mood? Do you want
+        to pick something especially danceable or only instrumental? This tool
+        is for you. <div>Enjoy!</div>
       </StyledText>
-      <StyledButton onClick={handleStart}>Start!</StyledButton>
+      <StyledButton start onClick={handleStart}>
+        Start!
+      </StyledButton>
     </StyledStart>
   );
 }
