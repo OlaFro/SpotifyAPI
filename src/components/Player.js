@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 import {
   currStep,
   setGenre,
@@ -16,6 +17,8 @@ import {
   StyledGrid,
   StyledIframe,
   StyledText,
+  StyledQuery,
+  StyledH3,
 } from "../styled components/styledPlayer";
 import { StyledButton } from "../styled components/styledForm";
 import Loader from "./Loader";
@@ -30,6 +33,23 @@ export default function Player() {
   const popularity = useSelector((state) => state.popularity);
   const valance = useSelector((state) => state.valance);
   const dispatch = useDispatch();
+
+  const [displayedTempo, setDisplayedTempo] = useState("");
+
+  async function translateTempo(bpm) {
+    await recommendation;
+    if (bpm === "min_tempo=60&max_tempo=90") {
+      setDisplayedTempo("60-90 BPM");
+    } else if (bpm === "min_tempo=90&max_tempo=120") {
+      setDisplayedTempo("90-120 BPM");
+    } else if (bpm === "min_tempo=120&max_tempo=200") {
+      setDisplayedTempo("above 120 BPM");
+    } else {
+      console.log("no tempo");
+    }
+  }
+
+  translateTempo(tempo);
 
   function sendBack() {
     dispatch(currStep("Start"));
@@ -46,9 +66,15 @@ export default function Player() {
       <StyledHeading>Bunch of songs Spotify has for You:</StyledHeading>
       <StyledText>
         {" "}
-        You chose: <br></br> genre: {genre}, danceability: {dance},
-        vocal/instrumentalness: {vocal}, modality: {mode}, tempo: {tempo},
-        popularity: {popularity}, mood: {valance}
+        <StyledH3>You chose:</StyledH3> genre:{" "}
+        <StyledQuery>{genre}</StyledQuery>
+        danceability: <StyledQuery>{dance}</StyledQuery> vocal:{" "}
+        <StyledQuery>{vocal}</StyledQuery> modality:{" "}
+        <StyledQuery>{mode}</StyledQuery> tempo:{" "}
+        <StyledQuery>{displayedTempo}</StyledQuery>
+        <StyledQuery>{displayedTempo}</StyledQuery> popularity:{" "}
+        <StyledQuery>{popularity}</StyledQuery>mood:
+        <StyledQuery>{valance}</StyledQuery>
       </StyledText>
       {recommendations ? (
         <StyledGrid>

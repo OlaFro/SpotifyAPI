@@ -6,9 +6,10 @@ export const StyledAsk = styled.div`
   display: flex;
   flex-direction: column;
   border: 4px solid white;
-  padding: 2rem;
+  padding: 4rem;
   min-height: 60%;
   align-items: center;
+
   /* width: 100%; */
 `;
 

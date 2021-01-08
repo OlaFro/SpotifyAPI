@@ -5,20 +5,11 @@ export const StyledApp = styled.div`
   grid-template-rows: 20% 1fr 10%;
   justify-items: center;
   align-content: center;
-  height: 100%;
+  height: 100vh;
 `;
 
 let shadow = "";
-// let gradient = `linear-gradient(
-//   105deg, rgba(249, 184, 199, 1) 0%, rgba(0, 212, 255, 1) 100%)`;
-// console.log(props.theme);
-// function gettingGradient(props) {
-//   gradient = props.theme.aqua;
-//   console.log(gradient);
-// }
-// gettingGradient();
 for (let i = 0; i < 1000; i++) {
-  // shadow += (shadow ? "," : "") + i * 1 + "px " + i * 1 + "px 0 " + gradient;
   shadow += (shadow ? "," : "") + i * 1 + "px " + i * 1 + "px 0 #E5BACB";
 }
 

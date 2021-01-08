@@ -6,8 +6,9 @@ export const StyledHeading = styled.h2`
   color: white;
   border: 4px solid white;
   width: 100%;
-  padding: 10px;
-  display: block;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
   margin: 0;
   grid-area: StyledHeading;
 `;
@@ -22,18 +23,29 @@ export const StyledText = styled.div`
   font-size: 1.2rem;
 `;
 
+export const StyledH3 = styled.h3`
+  margin: 1rem auto;
+`;
+
+export const StyledQuery = styled.div`
+  background: white;
+  color: ${(props) => props.theme.pink};
+  padding: 3px 10px;
+  margin: 0.5rem 0;
+`;
+
 export const StyledPlayer = styled.div`
   display: grid;
   width: 80%;
   margin: auto;
   grid-template-columns: 20% 1.2fr 1.2fr 1fr;
-  grid-template-rows: 20% 1fr 1fr 1fr 7%;
+  grid-template-rows: 5rem 1fr 1fr 1fr 7%;
   gap: 25px 25px;
   grid-template-areas:
-    "StyledHeading StyledText StyledText StyledText"
-    "StyledHeading StyledGrid StyledGrid StyledGrid"
-    "StyledHeading StyledGrid StyledGrid StyledGrid"
-    "StyledHeading StyledGrid StyledGrid StyledGrid"
+    "StyledText StyledHeading StyledHeading StyledHeading"
+    "StyledText StyledGrid StyledGrid StyledGrid"
+    "StyledText StyledGrid StyledGrid StyledGrid"
+    "StyledText StyledGrid StyledGrid StyledGrid"
     "StyledButton StyledButton StyledButton StyledButton";
   justify-items: start;
 
