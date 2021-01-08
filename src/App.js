@@ -16,6 +16,7 @@ import * as theme from "./styled components/theme";
 
 function App() {
   const currStep = useSelector((state) => state.currStep);
+  const recommendations = useSelector((state) => state.recommendations);
 
   return (
     <>
@@ -29,7 +30,7 @@ function App() {
           currStep === "Form3" ? (
             <FormContainer />
           ) : null}
-          {currStep === "Player" ? <Player /> : null}
+          {currStep === "Player" && recommendations ? <Player /> : null}
           <StyledFooter>
             Created by{" "}
             <StyledLink href="https://github.com/OlaFro">Ola Frost</StyledLink>.

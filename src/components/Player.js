@@ -19,6 +19,8 @@ import {
   StyledText,
   StyledQuery,
   StyledH3,
+  StyledTip,
+  StyledHover,
 } from "../styled components/styledPlayer";
 import { StyledButton } from "../styled components/styledForm";
 import Loader from "./Loader";
@@ -35,9 +37,10 @@ export default function Player() {
   const dispatch = useDispatch();
 
   const [displayedTempo, setDisplayedTempo] = useState("");
+  const [displayedMode, setDisplayedMode] = useState("");
 
   async function translateTempo(bpm) {
-    await recommendation;
+    await recommendations;
     if (bpm === "min_tempo=60&max_tempo=90") {
       setDisplayedTempo("60-90 BPM");
     } else if (bpm === "min_tempo=90&max_tempo=120") {
@@ -50,6 +53,17 @@ export default function Player() {
   }
 
   translateTempo(tempo);
+
+  async function translateMode(value) {
+    await recommendations;
+    if (value === "1") {
+      setDisplayedMode("major");
+    } else {
+      setDisplayedMode("minor");
+    }
+  }
+
+  translateMode(mode);
 
   function sendBack() {
     dispatch(currStep("Start"));
@@ -66,14 +80,63 @@ export default function Player() {
       <StyledHeading>Bunch of songs Spotify has for You:</StyledHeading>
       <StyledText>
         {" "}
-        <StyledH3>You chose:</StyledH3> genre:{" "}
+        <StyledH3>You've chosen:</StyledH3> genre:{" "}
         <StyledQuery>{genre}</StyledQuery>
-        danceability: <StyledQuery>{dance}</StyledQuery> vocal:{" "}
-        <StyledQuery>{vocal}</StyledQuery> modality:{" "}
-        <StyledQuery>{mode}</StyledQuery> tempo:{" "}
-        <StyledQuery>{displayedTempo}</StyledQuery>
-        <StyledQuery>{displayedTempo}</StyledQuery> popularity:{" "}
-        <StyledQuery>{popularity}</StyledQuery>mood:
+        danceability{" "}
+        <StyledTip>
+          ?
+          <StyledHover>
+            Danceability describes how suitable a track is for dancing based on
+            a combination of musical elements including tempo, rhythm stability,
+            beat strength, and overall regularity. A value of 0.0 is least
+            danceable and 1.0 is most danceable. (Spotify.com)
+          </StyledHover>
+        </StyledTip>
+        <StyledQuery>{dance}</StyledQuery>
+        instrumentalness{" "}
+        <StyledTip>
+          ?
+          <StyledHover>
+            Predicts whether a track contains no vocals. “Ooh” and “aah” sounds
+            are treated as instrumental in this context. Rap or spoken word
+            tracks are clearly “vocal”. The closer the instrumentalness value is
+            to 1.0, the greater likelihood the track contains no vocal content.
+            Values above 0.5 are intended to represent instrumental tracks, but
+            confidence is higher as the value approaches 1.0. (Spotify.com)
+          </StyledHover>
+        </StyledTip>
+        <StyledQuery>{vocal}</StyledQuery>
+        modality{" "}
+        <StyledTip>
+          ?
+          <StyledHover>
+            Mode indicates the modality (major or minor) of a track, the type of
+            scale from which its melodic content is derived. Major is
+            represented by 1 and minor is 0. (Spotify.com)
+          </StyledHover>
+        </StyledTip>
+        <StyledQuery>{displayedMode}</StyledQuery>
+        tempo: <StyledQuery>{displayedTempo}</StyledQuery> popularity{" "}
+        <StyledTip>
+          ?
+          <StyledHover>
+            The popularity of the track. The value will be between 0 and 100,
+            with 100 being the most popular. The popularity is calculated by
+            algorithm and is based, in the most part, on the total number of
+            plays the track has had and how recent those plays are.
+            (Spotify.com)
+          </StyledHover>
+        </StyledTip>
+        <StyledQuery>{popularity}</StyledQuery>mood{" "}
+        <StyledTip>
+          ?
+          <StyledHover>
+            A measure from 0.0 to 1.0 describing the musical positiveness
+            conveyed by a track. Tracks with high valence sound more positive
+            (e.g. happy, cheerful, euphoric), while tracks with low valence
+            sound more negative (e.g. sad, depressed, angry). (Spotify.com)
+          </StyledHover>
+        </StyledTip>
         <StyledQuery>{valance}</StyledQuery>
       </StyledText>
       {recommendations ? (

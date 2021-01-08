@@ -34,6 +34,44 @@ export const StyledQuery = styled.div`
   margin: 0.5rem 0;
 `;
 
+export const StyledTip = styled.div`
+  position: relative;
+  display: inline-block;
+  transform: translateY(-8px);
+  cursor: pointer;
+  font-size: 0.8rem;
+  background-color: white;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  color: ${(props) => props.theme.aqua};
+  text-align: center;
+  z-index: 100;
+  font-weight: 500;
+  :hover > div {
+    opacity: 1;
+    text-align: left;
+    font-weight: 500;
+    z-index: 200;
+  }
+`;
+
+export const StyledHover = styled.div`
+  position: absolute;
+
+  top: 0;
+  left: 25px;
+  width: 25rem;
+  height: auto;
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 200ms;
+  font-style: italic;
+`;
+
 export const StyledPlayer = styled.div`
   display: grid;
   width: 80%;
@@ -48,7 +86,6 @@ export const StyledPlayer = styled.div`
     "StyledText StyledGrid StyledGrid StyledGrid"
     "StyledButton StyledButton StyledButton StyledButton";
   justify-items: start;
-
   height: 100%;
 `;
 
@@ -59,7 +96,6 @@ export const StyledGrid = styled.div`
   row-gap: 1rem;
   width: 100%;
   position: relative;
-
   grid-area: StyledGrid;
 `;
 
