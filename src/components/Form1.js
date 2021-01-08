@@ -77,7 +77,7 @@ export default function Form1() {
             </StyledSelect>
             <StyledArrow />
           </StyledSelectContainer>
-          <StyledWarning display={clicked && !genre ? true : false} margin>
+          <StyledWarning opacity={clicked && genre === "" ? 1 : 0} margin>
             Please select genre
           </StyledWarning>
         </StyledCentering>
@@ -98,7 +98,7 @@ export default function Form1() {
 
             <StyledDescription>more</StyledDescription>
           </StyledInputContainer>
-          <StyledWarning display={clicked && !dance ? true : false}>
+          <StyledWarning opacity={clicked && !dance ? 1 : 0}>
             Please select danceability
           </StyledWarning>
         </StyledCentering>
@@ -118,7 +118,7 @@ export default function Form1() {
             />
             <StyledDescription>instrumentalness</StyledDescription>
           </StyledInputContainer>
-          <StyledWarning display={clicked && !instrument ? true : false}>
+          <StyledWarning opacity={clicked && !instrument ? 1 : 0}>
             Please select amount of vocal
           </StyledWarning>
         </StyledCentering>

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { StyledLoader } from "../styled components/styledLoader";
 export default function Loader() {
-  return <div>Ich bin dein Loader</div>;
+  return <StyledLoader>Ich bin dein Loader</StyledLoader>;
 }

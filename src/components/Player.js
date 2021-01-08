@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 import {
   currStep,
   setGenre,
@@ -23,6 +24,14 @@ export default function Player() {
   const recommendations = useSelector((state) => state.recommendations);
   const dispatch = useDispatch();
 
+  const [loads, setLoads] = useState([]);
+
+  let myArray = [];
+  function handleLoads() {
+    // dispatch(currStep("tracks"));
+    myArray.push("loaded");
+  }
+
   function sendBack() {
     dispatch(currStep("Start"));
     dispatch(setGenre(""));
@@ -43,16 +52,15 @@ export default function Player() {
               src={`https://open.spotify.com/embed/track/${track.id}`}
               width="250"
               height="80"
-              key="index"
+              key={track.id}
               frameborder="0"
               allowtransparency="true"
               allow="encrypted-media"
+              onLoad={handleLoads}
             />
           ))}
         </StyledGrid>
-      ) : (
-        <Loader />
-      )}
+      ) : null}
       <StyledAgainButton type="button" value="again!" onClick={sendBack} />
     </StyledPlayer>
   );

@@ -20,6 +20,8 @@ export const StyledPlayer = styled.div`
   row-gap: 1rem;
   column-gap: 2rem;
   justify-items: start;
+  border: 1px solid green;
+  height: 100%;
 `;
 
 export const StyledGrid = styled.div`
@@ -28,6 +30,14 @@ export const StyledGrid = styled.div`
   row-gap: 1rem;
   width: 100%;
   margin: 0 0 0 2rem;
+  position: relative;
+  ::after {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    ${(props) => (props.after ? `content: ""` : null)}
+  }
 `;
 
 export const StyledAgainButton = styled.input`

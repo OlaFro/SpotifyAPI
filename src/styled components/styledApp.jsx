@@ -42,16 +42,6 @@ export const StyledText = styled.h2`
   border: 4px solid white;
   padding: 2rem;
   position: relative;
-  /* ::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    border: 4px solid white;
-    display: grid;
-    grid
-  } */
 `;
 
 export const StyledLink = styled.a`

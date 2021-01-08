@@ -44,7 +44,7 @@ export default function Form3() {
     e.preventDefault();
     setClicked(true);
     if (popularity && valance) {
-      dispatch(currStep("tracks"));
+      dispatch(currStep("Player"));
       let url1 = "https://accounts.spotify.com/api/token";
       let url2 = "https://api.spotify.com/v1/recommendations";
       axios({
@@ -91,7 +91,7 @@ export default function Form3() {
 
             <StyledDescription>very!</StyledDescription>
           </StyledInputContainer>
-          <StyledWarning display={clicked && !popularity ? true : false} margin>
+          <StyledWarning opacity={clicked && !popularity ? 1 : 0} margin>
             Please choose popularity
           </StyledWarning>
         </StyledCentering>
@@ -111,11 +111,13 @@ export default function Form3() {
             />
             <StyledDescription>I feel happy!</StyledDescription>
           </StyledInputContainer>
-          <StyledWarning display={clicked && !valance ? true : false} margin>
+          <StyledWarning opacity={clicked && !valance ? 1 : 0} margin>
             Please choose the mood
           </StyledWarning>
         </StyledCentering>
-        <StyledButton onClick={tokenRequest}>next</StyledButton>
+        <StyledButton next onClick={tokenRequest}>
+          next
+        </StyledButton>
       </StyledAsk>
     </div>
   );

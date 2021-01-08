@@ -81,7 +81,7 @@ export default function Form2() {
             />
             <StyledSpan>minor</StyledSpan>
           </StyledInputContainer>
-          <StyledWarning display={clicked && !modality ? true : false} margin>
+          <StyledWarning opacity={clicked && !modality ? 1 : 0} margin>
             Please choose modality
           </StyledWarning>
         </StyledCentering>
@@ -112,11 +112,13 @@ export default function Form2() {
             />
             <StyledSpan> above 120</StyledSpan>
           </StyledTempoContainer>
-          <StyledWarning display={clicked && !tempo ? true : false} margin>
+          <StyledWarning opacity={clicked && !tempo ? 1 : 0} margin>
             Please set the tempo
           </StyledWarning>
         </StyledCentering>
-        <StyledButton onClick={sendForm2}>next</StyledButton>
+        <StyledButton next onClick={sendForm2}>
+          next
+        </StyledButton>
       </StyledAsk>
     </div>
   );

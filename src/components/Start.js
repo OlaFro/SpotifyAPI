@@ -16,7 +16,7 @@ export default function Start() {
         to pick something especially danceable or only instrumental? This tool
         is for you. <div>Enjoy!</div>
       </StyledText>
-      <StyledButton start onClick={handleStart}>
+      <StyledButton start="true" onClick={handleStart}>
         Start!
       </StyledButton>
     </StyledStart>

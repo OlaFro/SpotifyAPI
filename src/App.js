@@ -1,6 +1,7 @@
 import FormContainer from "./components/FormContainer";
 import Player from "./components/Player";
 import Start from "./components/Start";
+
 import { useSelector } from "react-redux";
 import {
   StyledApp,
@@ -14,7 +15,6 @@ import { ThemeProvider } from "styled-components";
 import * as theme from "./styled components/theme";
 
 function App() {
-  const tracks = useSelector((state) => state.recommendations);
   const currStep = useSelector((state) => state.currStep);
 
   return (
@@ -29,7 +29,7 @@ function App() {
           currStep === "Form3" ? (
             <FormContainer />
           ) : null}
-          {currStep === "tracks" && tracks ? <Player /> : null}
+          {currStep === "Player" ? <Player /> : null}
           <StyledFooter>
             Created by{" "}
             <StyledLink href="https://github.com/OlaFro">Ola Frost</StyledLink>.

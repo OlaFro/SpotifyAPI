@@ -113,8 +113,10 @@ export const StyledSelect = styled.select`
   height: 2.5rem;
   color: white;
   font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  appearance: none;
 
-  :active {
+  :focus {
     outline: none;
   }
 `;
@@ -125,28 +127,26 @@ export const StyledOption = styled.option`
 `;
 
 export const StyledArrow = styled.span`
+  /* display: none; */
   width: 40px;
   height: 35px;
   background-color: white;
   top: 8px;
   right: 8px;
   position: absolute;
+  z-index: 1;
   pointer-events: none;
 
   ::after {
-    content: "";
+    content: "⌄";
     position: absolute;
-    width: 0;
-    height: 0;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid ${(props) => props.theme.pink};
+    color: ${(props) => props.theme.pink};
+    left: 13px;
+    top: 0;
+    transform: scale(1.5);
   }
   :hover::after {
-    border-top: 6px solid ${(props) => props.theme.aqua};
+    color: ${(props) => props.theme.aqua};
   }
 `;
 
@@ -213,7 +213,7 @@ export const StyledWarning = styled.p`
   font-size: 0.8rem;
   font-weight: 900;
   margin-top: ${(props) => (props.margin ? "0.4rem" : "-0.2rem")};
-  opacity: ${(props) => (props.display ? "1" : "0")};
+  opacity: ${(props) => props.opacity};
 `;
 
 export const StyledLabel = styled.label`
