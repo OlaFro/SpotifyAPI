@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
 import {
   currStep,
   setGenre,
@@ -15,22 +14,22 @@ import {
   StyledPlayer,
   StyledHeading,
   StyledGrid,
-  StyledAgainButton,
   StyledIframe,
+  StyledText,
 } from "../styled components/styledPlayer";
+import { StyledButton } from "../styled components/styledForm";
 import Loader from "./Loader";
 
 export default function Player() {
   const recommendations = useSelector((state) => state.recommendations);
+  const genre = useSelector((state) => state.genre);
+  const dance = useSelector((state) => state.dance);
+  const vocal = useSelector((state) => state.instrument);
+  const mode = useSelector((state) => state.mode);
+  const tempo = useSelector((state) => state.tempo);
+  const popularity = useSelector((state) => state.popularity);
+  const valance = useSelector((state) => state.valance);
   const dispatch = useDispatch();
-
-  const [loads, setLoads] = useState([]);
-
-  let myArray = [];
-  function handleLoads() {
-    // dispatch(currStep("tracks"));
-    myArray.push("loaded");
-  }
 
   function sendBack() {
     dispatch(currStep("Start"));
@@ -45,8 +44,15 @@ export default function Player() {
   return (
     <StyledPlayer>
       <StyledHeading>Bunch of songs Spotify has for You:</StyledHeading>
+      <StyledText>
+        {" "}
+        You chose: <br></br> genre: {genre}, danceability: {dance},
+        vocal/instrumentalness: {vocal}, modality: {mode}, tempo: {tempo},
+        popularity: {popularity}, mood: {valance}
+      </StyledText>
       {recommendations ? (
         <StyledGrid>
+          {/* <StyledText player>You chose: Genre: {genre}</StyledText> */}
           {recommendations.map((track, index) => (
             <StyledIframe
               src={`https://open.spotify.com/embed/track/${track.id}`}
@@ -56,12 +62,15 @@ export default function Player() {
               frameborder="0"
               allowtransparency="true"
               allow="encrypted-media"
-              onLoad={handleLoads}
             />
           ))}
         </StyledGrid>
-      ) : null}
-      <StyledAgainButton type="button" value="again!" onClick={sendBack} />
+      ) : (
+        <Loader />
+      )}
+      <StyledButton again onClick={sendBack}>
+        Again!
+      </StyledButton>
     </StyledPlayer>
   );
 }

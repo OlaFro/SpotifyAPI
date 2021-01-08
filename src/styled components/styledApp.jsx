@@ -5,7 +5,7 @@ export const StyledApp = styled.div`
   grid-template-rows: 20% 1fr 10%;
   justify-items: center;
   align-content: center;
-  height: 99vh;
+  height: 100%;
 `;
 
 let shadow = "";
@@ -38,10 +38,9 @@ export const StyledFooter = styled.footer`
 `;
 
 export const StyledText = styled.h2`
-  width: 40%;
   border: 4px solid white;
+  width: 40%;
   padding: 2rem;
-  position: relative;
 `;
 
 export const StyledLink = styled.a`

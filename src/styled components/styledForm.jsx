@@ -42,7 +42,7 @@ export const StyledButton = styled.div`
   background-color: white;
   color: ${(props) => props.theme.aqua};
   padding: 5px 15px;
-  margin: 0, auto;
+  margin: 0;
   font-size: 1.2rem;
   width: 3rem;
   height: 2rem;
@@ -53,6 +53,8 @@ export const StyledButton = styled.div`
   justify-content: center;
   overflow: hidden;
   z-index: 0;
+  grid-area: StyledButton;
+  justify-self: center;
 
   ::after {
     content: "";
@@ -79,6 +81,8 @@ export const StyledButton = styled.div`
         return `content: "Start!"`;
       } else if (props.next) {
         return `content: "next"`;
+      } else if (props.again) {
+        return `content: "Again!"`;
       }
     }}
   }

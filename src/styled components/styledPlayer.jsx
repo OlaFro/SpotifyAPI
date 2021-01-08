@@ -1,43 +1,54 @@
 import styled from "styled-components";
 
 export const StyledHeading = styled.h2`
+  box-sizing: border-box;
   font-size: 2rem;
   color: white;
   border: 4px solid white;
-  width: 10rem;
+  width: 100%;
   padding: 10px;
   display: block;
   margin: 0;
+  grid-area: StyledHeading;
+`;
+
+export const StyledText = styled.div`
+  border: 4px solid white;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  height: 100%;
+  grid-area: StyledText;
+  font-size: 1.2rem;
 `;
 
 export const StyledPlayer = styled.div`
   display: grid;
-  width: 60%;
+  width: 80%;
   margin: auto;
-  margin-top: 2rem;
-  grid-template-columns: 10rem 1fr;
-  grid-template-rows: 1fr 42px;
-  row-gap: 1rem;
-  column-gap: 2rem;
+  grid-template-columns: 20% 1.2fr 1.2fr 1fr;
+  grid-template-rows: 20% 1fr 1fr 1fr 7%;
+  gap: 25px 25px;
+  grid-template-areas:
+    "StyledHeading StyledText StyledText StyledText"
+    "StyledHeading StyledGrid StyledGrid StyledGrid"
+    "StyledHeading StyledGrid StyledGrid StyledGrid"
+    "StyledHeading StyledGrid StyledGrid StyledGrid"
+    "StyledButton StyledButton StyledButton StyledButton";
   justify-items: start;
-  border: 1px solid green;
+
   height: 100%;
 `;
 
 export const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   row-gap: 1rem;
   width: 100%;
-  margin: 0 0 0 2rem;
   position: relative;
-  ::after {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    position: absolute;
-    ${(props) => (props.after ? `content: ""` : null)}
-  }
+
+  grid-area: StyledGrid;
 `;
 
 export const StyledAgainButton = styled.input`
