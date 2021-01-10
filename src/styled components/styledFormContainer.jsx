@@ -5,7 +5,7 @@ export const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  /* @media (max-width: 1650px) {
-    flex-direction: column;
-  } */
+  @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+    width: 80%;
+  }
 `;

@@ -6,11 +6,12 @@ export const StyledAsk = styled.div`
   display: flex;
   flex-direction: column;
   border: 4px solid white;
-  padding: 4rem;
+  padding: 4rem 1rem;
   min-height: 60%;
   align-items: center;
-
-  /* width: 100%; */
+  @media (min-width: ${(props) => props.theme.breakpoints.md}px) {
+    padding: 4rem;
+  }
 `;
 
 export const StyledInputContainer = styled.div`
@@ -57,14 +58,11 @@ export const StyledButton = styled.div`
   grid-area: StyledButton;
   justify-self: center;
   width: 3rem;
-  /* ${(props) => {
+  ${(props) => {
     if (props.again) {
-      return `width: 8rem`;
-    } else {
-      return `
-        width: 3rem`;
+      return `order: 4;`;
     }
-  }} */
+  }}
 
   ::after {
     content: "";

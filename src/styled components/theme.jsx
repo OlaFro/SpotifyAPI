@@ -4,3 +4,8 @@ export const warning = "#50494d";
 export const pink = "#e5bacb";
 export const gradient = `linear-gradient(
     105deg, rgba(249, 184, 199, 1) 0%, rgba(0, 212, 255, 1) 100%)`;
+
+export const breakpoints = {
+  md: 680,
+  lg: 980,
+};

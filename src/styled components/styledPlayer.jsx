@@ -10,7 +10,9 @@ export const StyledHeading = styled.h2`
   display: flex;
   align-items: center;
   margin: 0;
+  height: 100%;
   grid-area: StyledHeading;
+  order: 1;
 `;
 
 export const StyledText = styled.div`
@@ -21,6 +23,7 @@ export const StyledText = styled.div`
   height: 100%;
   grid-area: StyledText;
   font-size: 1.2rem;
+  order: 3;
 `;
 
 export const StyledH3 = styled.h3`
@@ -72,34 +75,39 @@ export const StyledHover = styled.div`
 `;
 
 export const StyledPlayer = styled.div`
-  display: grid;
-  width: 80%;
-  margin: auto;
-  grid-template-columns: 20% 1.2fr 1.2fr 1fr;
-  grid-template-rows: 5rem 1fr 1fr 1fr 7%;
-  gap: 25px 25px;
-  grid-template-areas:
-    "StyledText StyledHeading StyledHeading StyledHeading"
-    "StyledText StyledGrid StyledGrid StyledGrid"
-    "StyledText StyledGrid StyledGrid StyledGrid"
-    "StyledText StyledGrid StyledGrid StyledGrid"
-    "StyledButton StyledButton StyledButton StyledButton";
-  justify-items: start;
-  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60vh;
+  align-items: center;
+  @media (min-width: 1340px) {
+    display: grid;
+    grid-template-columns: 20% 1000px;
+    grid-template-rows: 5rem 1fr 7%;
+    gap: 25px 25px;
+    grid-template-areas:
+      "StyledText StyledHeading "
+      "StyledText StyledGrid "
+      "StyledButton StyledButton ";
+    height: 100%;
+  }
 `;
 
 export const StyledGrid = styled.div`
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(3, 300px);
+  grid-template-columns: repeat(3, 250px);
   grid-template-rows: repeat(4, 100px);
   row-gap: 1rem;
   column-gap: 3rem;
   width: 100%;
   grid-area: StyledGrid;
   border: 4px solid white;
-  justify-items: center;
-  align-items: center;
+  justify-content: center;
+  align-content: center;
+  order: 2;
+  height: 100%;
 `;
 
 export const StyledAgainButton = styled.input`

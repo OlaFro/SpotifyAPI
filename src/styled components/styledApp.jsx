@@ -5,19 +5,25 @@ export const StyledApp = styled.div`
   grid-template-rows: 20% 1fr 10%;
   justify-items: center;
   align-content: center;
-  height: 100vh;
+  @media (min-width: 1340px) {
+    /* height: 100vh; */
+  } ;
 `;
 
 let shadow = "";
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < 2000; i++) {
   shadow += (shadow ? "," : "") + i * 1 + "px " + i * 1 + "px 0 #E5BACB";
 }
 
 export const StyledHeading = styled.header`
-  font-size: 120px;
   font-style: italic;
   text-shadow: 1px 1px 0 red;
   text-shadow: ${shadow};
+  font-size: 70px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.md}px) {
+    font-size: 120px;
+  }
 `;
 
 export const StyledFooter = styled.footer`
@@ -31,7 +37,15 @@ export const StyledFooter = styled.footer`
 export const StyledText = styled.h2`
   border: 4px solid white;
   width: 40%;
+  max-height: 20rem;
   padding: 2rem;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+    font-size: 1rem;
+  }
+  @media (min-width: ${(props) => props.theme.breakpoints.lg}px) {
+    font-size: 2vw;
+  }
 `;
 
 export const StyledLink = styled.a`

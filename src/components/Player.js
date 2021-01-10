@@ -138,22 +138,21 @@ export default function Player() {
         </StyledTip>
         <StyledQuery>{valance}</StyledQuery>
       </StyledText>
-      {recommendations ? (
-        <StyledGrid>
-          {/* <StyledText player>You chose: Genre: {genre}</StyledText> */}
-          {recommendations.map((track, index) => (
-            <StyledIframe
-              src={`https://open.spotify.com/embed/track/${track.id}`}
-              width="250"
-              height="80"
-              key={track.id}
-              frameborder="0"
-              allowtransparency="true"
-              allow="encrypted-media"
-            />
-          ))}
-        </StyledGrid>
-      ) : null}
+
+      <StyledGrid>
+        {recommendations.map((track, index) => (
+          <StyledIframe
+            src={`https://open.spotify.com/embed/track/${track.id}`}
+            width="250"
+            height="80"
+            key={track.id}
+            frameborder="0"
+            allowtransparency="true"
+            allow="encrypted-media"
+          />
+        ))}
+      </StyledGrid>
+
       <StyledButton again onClick={sendBack}>
         again!
       </StyledButton>
