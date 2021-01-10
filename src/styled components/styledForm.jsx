@@ -40,12 +40,12 @@ export const StyledCentering = styled.div`
 `;
 
 export const StyledButton = styled.div`
+  box-sizing: content-box;
   background-color: white;
   color: ${(props) => props.theme.aqua};
   padding: 5px 15px;
   margin: 0;
   font-size: 1.2rem;
-  width: 3rem;
   height: 2rem;
   cursor: pointer;
   position: relative;
@@ -56,10 +56,18 @@ export const StyledButton = styled.div`
   z-index: 0;
   grid-area: StyledButton;
   justify-self: center;
+  width: 3rem;
+  /* ${(props) => {
+    if (props.again) {
+      return `width: 8rem`;
+    } else {
+      return `
+        width: 3rem`;
+    }
+  }} */
 
   ::after {
     content: "";
-
     background-color: ${(props) => props.theme.pink};
     position: absolute;
     left: -25%;
@@ -83,7 +91,7 @@ export const StyledButton = styled.div`
       } else if (props.next) {
         return `content: "next"`;
       } else if (props.again) {
-        return `content: "Again!"`;
+        return `content: "again!"`;
       }
     }}
   }

@@ -1,6 +1,7 @@
 import FormContainer from "./components/FormContainer";
 import Player from "./components/Player";
 import Start from "./components/Start";
+import Loader from "./components/Loader";
 
 import { useSelector } from "react-redux";
 import {
@@ -30,6 +31,7 @@ function App() {
           currStep === "Form3" ? (
             <FormContainer />
           ) : null}
+          {currStep === "Loader" ? <Loader /> : null}
           {currStep === "Player" && recommendations ? <Player /> : null}
           <StyledFooter>
             Created by{" "}

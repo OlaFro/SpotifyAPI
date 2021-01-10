@@ -58,7 +58,6 @@ export const StyledTip = styled.div`
 
 export const StyledHover = styled.div`
   position: absolute;
-
   top: 0;
   left: 25px;
   width: 25rem;
@@ -90,13 +89,17 @@ export const StyledPlayer = styled.div`
 `;
 
 export const StyledGrid = styled.div`
+  box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 300px);
+  grid-template-rows: repeat(4, 100px);
   row-gap: 1rem;
+  column-gap: 3rem;
   width: 100%;
-  position: relative;
   grid-area: StyledGrid;
+  border: 4px solid white;
+  justify-items: center;
+  align-items: center;
 `;
 
 export const StyledAgainButton = styled.input`
@@ -118,5 +121,5 @@ export const StyledAgainButton = styled.input`
 `;
 
 export const StyledIframe = styled.iframe`
-  border: 4px solid white;
+  border: none;
 `;

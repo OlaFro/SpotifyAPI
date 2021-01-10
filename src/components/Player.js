@@ -23,7 +23,6 @@ import {
   StyledHover,
 } from "../styled components/styledPlayer";
 import { StyledButton } from "../styled components/styledForm";
-import Loader from "./Loader";
 
 export default function Player() {
   const recommendations = useSelector((state) => state.recommendations);
@@ -154,11 +153,9 @@ export default function Player() {
             />
           ))}
         </StyledGrid>
-      ) : (
-        <Loader />
-      )}
+      ) : null}
       <StyledButton again onClick={sendBack}>
-        Again!
+        again!
       </StyledButton>
     </StyledPlayer>
   );

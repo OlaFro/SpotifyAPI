@@ -1,8 +1,19 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const blink = keyframes`
+from {
+  opacity: 0
+}
+to {
+  opacity: 1
+}
+`;
 
 export const StyledLoader = styled.div`
   height: 100%;
   width: 100%;
-  background-color: ${(props) => props.theme.aqua};
-  border: 4px solid yellow;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  animation: ${blink} 1000ms ease-in-out infinite;
 `;
