@@ -1,43 +1,17 @@
 import styled from "styled-components";
 
 export const StyledAsk = styled.div`
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: 70%;
   font-size: 1.2rem;
   color: white;
   display: flex;
   flex-direction: column;
+  border: 4px solid white;
+  padding: 4rem 1rem;
+  min-height: 60%;
   align-items: center;
-  justify-content: space-between;
-  ${(props) => {
-    if (props.step1) {
-      return `
-      height: 57%;
-      top: 57%;
-      left: 48%;`;
-    } else if (props.step2) {
-      return `
-      height: 40%;
-      top: 53%;
-      left: 45%;`;
-    } else {
-      return `height: 40%;
-      top: 54%;
-      left: 52%;`
-    
-    }
-  }}
-`;
-
-export const StyledBlob = styled.div`
-  margin: auto;
-  background: center no-repeat url(.);
-  background-size: 100%;
-  width: 40rem;
-  height: 40rem;
-  position: relative;
-  margin-top: 2rem;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}px) {
+    padding: 4rem;
+  }
 `;
 
 export const StyledInputContainer = styled.div`
@@ -59,40 +33,131 @@ export const StyledInputContainer = styled.div`
   }}
 `;
 
-export const StyledButton = styled.input`
-  background-color: transparent;
-  border: 4px solid white;
-  padding: 5px 15px;
-  margin: 0, auto;
-  color: white;
-  font-size: 1.2rem;
-  font-family: "Montserrat", sans-serif;
+export const StyledCentering = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
-  :hover {
-    background-color: white;
-    color: ${(props) => props.theme.aqua};
+export const StyledButton = styled.div`
+  box-sizing: content-box;
+  background-color: white;
+  color: ${(props) => props.theme.aqua};
+  padding: 5px 15px;
+  margin: 0;
+  font-size: 1.2rem;
+  height: 2rem;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 0;
+  grid-area: StyledButton;
+  justify-self: center;
+  width: 3rem;
+  ${(props) => {
+    if (props.again) {
+      return `order: 4;`;
+    }
+  }}
+
+  ::after {
+    content: "";
+    background-color: ${(props) => props.theme.pink};
+    position: absolute;
+    left: -25%;
+    width: 7rem;
+    height: 7rem;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms ease-in;
+    z-index: 1;
+    border-radius: 100%;
   }
 
-  :active {
-    outline: none;
+  ::before {
+    content: "";
+    position: absolute;
+    opacity: 0;
+
+    ${(props) => {
+      if (props.start) {
+        return `content: "Start!"`;
+      } else if (props.next) {
+        return `content: "next"`;
+      } else if (props.again) {
+        return `content: "again!"`;
+      }
+    }}
+  }
+
+  :hover {
+    ::after {
+      transform: scaleX(1);
+      transform-origin: none;
+    }
+    ::before {
+      color: white;
+      opacity: 1;
+      z-index: 2;
+    }
+
+    :active {
+      outline: none;
+    }
   }
 `;
 
-export const StyledSelect = styled.select`
-  background-color: transparent;
-  color: white;
-  outline: none;
-  font-size: 1rem;
-  padding: 5px;
-  -moz-appearance: textfield;
-  -webkit-appearance: textfield;
-  border: 4px solid white;
-  margin-top: 1rem;
-  font-family: "Montserrat", sans-serif;
+export const StyledSelectContainer = styled.div`
+  position: relative;
+`;
 
-  :hover {
-    background-color: ${(props) => props.theme.aqua};
-    color: white;
+export const StyledSelect = styled.select`
+  -moz-appearance: none;
+  background-color: transparent;
+  border: 4px solid white;
+  padding: 5px;
+  margin: 5px;
+  height: 2.5rem;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  appearance: none;
+
+  :focus {
+    outline: none;
+  }
+`;
+export const StyledOption = styled.option`
+  -moz-appearance: none;
+  background-color: ${(props) => props.theme.aqua};
+  color: white;
+`;
+
+export const StyledArrow = styled.span`
+  /* display: none; */
+  width: 40px;
+  height: 35px;
+  background-color: white;
+  top: 8px;
+  right: 8px;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+
+  ::after {
+    content: "⌄";
+    position: absolute;
+    color: ${(props) => props.theme.pink};
+    left: 13px;
+    top: 0;
+    transform: scale(1.5);
+  }
+  :hover::after {
+    color: ${(props) => props.theme.aqua};
   }
 `;
 
@@ -159,7 +224,7 @@ export const StyledWarning = styled.p`
   font-size: 0.8rem;
   font-weight: 900;
   margin-top: ${(props) => (props.margin ? "0.4rem" : "-0.2rem")};
-  opacity: ${(props) => (props.display ? "1" : "0")};
+  opacity: ${(props) => props.opacity};
 `;
 
 export const StyledLabel = styled.label`
