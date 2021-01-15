@@ -47,20 +47,6 @@ export default function Form2() {
 
   return (
     <div>
-      {/* <svg
-        viewBox="0 0 500 500"
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        id="blobSvg"
-      >
-        <path
-          d="M399,291.5Q408,333,368.5,348.5Q329,364,300,395Q271,426,232,413Q193,400,128,408Q63,416,53.5,358.5Q44,301,67,256Q90,211,88.5,158Q87,105,142.5,108.5Q198,112,236,80.5Q274,49,330,51.5Q386,54,383,118Q380,182,385,216Q390,250,399,291.5Z"
-          fill="transparent"
-          stroke="white"
-          strokeWidth="4px"
-        ></path>
-      </svg> */}
-
       <StyledAsk step2>
         <StyledCentering>
           Choose the modality

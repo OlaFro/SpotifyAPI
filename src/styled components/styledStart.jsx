@@ -5,4 +5,6 @@ export const StyledStart = styled.header`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  grid-area: Main;
+  margin: 2rem 0;
 `;

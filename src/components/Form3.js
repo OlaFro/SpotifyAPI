@@ -30,9 +30,11 @@ export default function Form3() {
   }
 
   function tokenRequest(e) {
-    e.preventDefault();
     setClicked(true);
-    dispatch(currStep("Loader"));
+    if (valance && popularity) {
+      e.preventDefault();
+      dispatch(currStep("Loader"));
+    }
   }
 
   return (

@@ -2,12 +2,17 @@ import styled from "styled-components";
 
 export const StyledApp = styled.div`
   display: grid;
-  grid-template-rows: 20% 1fr 10%;
+  grid-template-rows: auto 1fr auto;
   justify-items: center;
   align-content: center;
+  grid-template-areas:
+    "Header"
+    "Main"
+    "Footer";
   @media (min-width: 1340px) {
-    /* height: 100vh; */
-  } ;
+    min-height: 100vh;
+  }
+  /* border: 1px solid black; */
 `;
 
 let shadow = "";
@@ -17,10 +22,13 @@ for (let i = 0; i < 2000; i++) {
 
 export const StyledHeading = styled.header`
   font-style: italic;
-  text-shadow: 1px 1px 0 red;
   text-shadow: ${shadow};
-  font-size: 70px;
-
+  font-size: 110px;
+  grid-area: Header;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 15px 0;
   @media (min-width: ${(props) => props.theme.breakpoints.md}px) {
     font-size: 120px;
   }
@@ -29,9 +37,9 @@ export const StyledHeading = styled.header`
 export const StyledFooter = styled.footer`
   font-size: 0.8rem;
   color: white;
-  margin-top: 1rem;
-  padding-top: 0.5rem;
+  margin: 1rem;
   border-top: 2px solid white;
+  grid-area: Footer;
 `;
 
 export const StyledText = styled.h2`
