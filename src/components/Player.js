@@ -18,10 +18,7 @@ import {
   StyledGrid,
   StyledIframe,
   StyledText,
-  StyledQuery,
   StyledH3,
-  StyledTip,
-  StyledHover,
 } from "../styled components/styledPlayer";
 import { StyledButton } from "../styled components/styledForm";
 
@@ -79,7 +76,6 @@ export default function Player() {
     <StyledPlayer>
       <StyledHeading>Bunch of songs Spotify has for You:</StyledHeading>
       <StyledText>
-        {" "}
         <StyledH3>You've chosen:</StyledH3>
         <Query noDesc choice="genre" output={genre} />
         <Query

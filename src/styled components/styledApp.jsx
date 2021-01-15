@@ -12,7 +12,6 @@ export const StyledApp = styled.div`
   @media (min-width: 1340px) {
     min-height: 100vh;
   }
-  /* border: 1px solid black; */
 `;
 
 let shadow = "";
@@ -23,7 +22,7 @@ for (let i = 0; i < 2000; i++) {
 export const StyledHeading = styled.header`
   font-style: italic;
   text-shadow: ${shadow};
-  font-size: 110px;
+  font-size: 80px;
   grid-area: Header;
   display: flex;
   justify-content: center;
