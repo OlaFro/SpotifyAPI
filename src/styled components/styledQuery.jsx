@@ -10,7 +10,6 @@ export const StyledQuery = styled.div`
     "desc desc";
   align-items: center;
   justify-items: space-around;
-  /* width: 14rem; */
 `;
 
 export const StyledChoice = styled.div`
@@ -61,13 +60,13 @@ export const StyledOutput = styled.span`
   color: ${(props) => props.theme.darkpink};
   grid-area: output;
   padding: 0.3rem;
+  font-size: 1rem;
 `;
 
 export const StyledDesc = styled.div`
-  margin: 0.5rem 0;
   padding: 0.5rem;
   background-color: white;
   color: rgba(0, 0, 0, 0.5);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   grid-area: desc;
 `;

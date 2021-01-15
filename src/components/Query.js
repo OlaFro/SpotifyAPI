@@ -13,7 +13,6 @@ export default function Desc(props) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    console.log(open);
     setOpen(true);
   };
 

@@ -26,7 +26,6 @@ export const StyledHeading = styled.h2`
 
 export const StyledText = styled.div`
   border: 4px solid white;
-  /* width: 100%; */
   box-sizing: border-box;
   padding: 1rem;
   grid-area: StyledText;
@@ -35,50 +34,6 @@ export const StyledText = styled.div`
 
 export const StyledH3 = styled.h3`
   margin: 1rem auto;
-`;
-
-export const StyledQuery = styled.div`
-  background: white;
-  color: ${(props) => props.theme.darkpink};
-  padding: 3px 10px;
-  margin: 0.5rem 0;
-`;
-
-export const StyledTip = styled.div`
-  position: relative;
-  display: inline-block;
-  transform: translateY(-8px);
-  cursor: pointer;
-  font-size: 0.8rem;
-  background-color: white;
-  border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
-  color: ${(props) => props.theme.aqua};
-  text-align: center;
-  z-index: 100;
-  font-weight: 500;
-  :hover > div {
-    opacity: 1;
-    text-align: left;
-    font-weight: 500;
-    z-index: 200;
-  }
-`;
-
-export const StyledHover = styled.div`
-  position: absolute;
-  top: 0;
-  left: 25px;
-  width: 25rem;
-  height: auto;
-  background-color: rgba(255, 255, 255, 1);
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 0.9rem;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 200ms;
-  font-style: italic;
 `;
 
 export const StyledPlayer = styled.div`
@@ -91,6 +46,7 @@ export const StyledPlayer = styled.div`
     "StyledButton ";
   gap: 25px;
   margin: 1rem;
+  width: 80%;
   @media (min-width: 680px) {
     /* grid-area: Main; */
     width: 60%;
@@ -98,13 +54,12 @@ export const StyledPlayer = styled.div`
   @media (min-width: 1340px) {
     display: grid;
     grid-template-columns: 20rem 1000px;
-    grid-template-rows: 5rem 1fr 7%;
+    grid-template-rows: 5rem 1fr auto;
     gap: 25px 25px;
     grid-template-areas:
       "StyledText StyledHeading "
       "StyledText StyledGrid "
       "StyledButton StyledButton ";
-    /* height: 100%; */
     width: auto;
   }
 `;
@@ -126,10 +81,13 @@ export const StyledGrid = styled.div`
     padding: 2rem;
     /* align-content: space-between; */
   }
+  @media (max-width: 980px) {
+    grid-template-columns: auto;
+  }
   @media (min-width: 1340px) {
     grid-template-columns: repeat(3, 250px);
     grid-template-rows: repeat(4, 100px);
-    align-content: center;
+    align-content: start;
     /* row-gap: 1rem; */
     column-gap: 3rem;
     /* width: 100%; */
