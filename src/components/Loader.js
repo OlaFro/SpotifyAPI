@@ -2,8 +2,10 @@ import React from "react";
 import { StyledLoader } from "../styled components/styledLoader";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken, getRecommendations, currStep } from "../redux/actions";
-import { clientID, clientSecret } from "../helpers/credentials";
 import axios from "axios";
+
+let clientID = process.env.REACT_APP_CLIENT_ID;
+let clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
 export default function Loader() {
   const genre = useSelector((state) => state.genre);

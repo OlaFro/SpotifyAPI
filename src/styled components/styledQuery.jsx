@@ -67,6 +67,6 @@ export const StyledDesc = styled.div`
   padding: 0.5rem;
   background-color: white;
   color: rgba(0, 0, 0, 0.5);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   grid-area: desc;
 `;
