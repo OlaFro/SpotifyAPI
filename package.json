@@ -1,10 +1,12 @@
 {
-  "name": "spotify-playlist",
+  "name": "Choosify",
   "version": "1.0.0",
-  "description": "![App](./src/App.png)",
+  "description": "Song recommendations app, that consumes Spotify API.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,4 +28,7 @@
     "express": "^4.17.1",
     "morgan": "^1.10.0"
   }
+  "engines": {
+    "node": "13.11.0"
+}
 }
