@@ -1,6 +1,6 @@
 # Choosify - Spotify song recommendation APP using React & Spotify API
 
-![App](./src/App.png)
+![App](./client/src/App.png)
 
 ## Live demo
 
