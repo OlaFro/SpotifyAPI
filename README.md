@@ -4,9 +4,7 @@
 
 ## Live demo
 
-Link to the deployment soon!
-
-<!-- 👉 [Click here](https://olafro.github.io/React-to-do/) 👈 -->
+👉 [Click here](https://choosify.herokuapp.com/) 👈
 
 ## About
 
